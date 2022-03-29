@@ -1,17 +1,10 @@
 import { useState } from 'react'
 import Contact from '../Contact'
 
-function Footer() {
-  const [contactForm, setContactForm] = useState('notClicked')
-
+function Footer(props) {
 
   const contactHandler = () => {
-    return (
-      <div>
-        <Contact/>
-        <button onClick={contactHandler}></button>
-      </div>
-    )
+    props.changePage('contact')
   }
 
   return (

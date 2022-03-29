@@ -14,39 +14,41 @@ function App() {
 
   const [pageRender, setPageRender] = useState('login')
 
-  const RenderComponent = () => {
+  const RenderComponent = (props) => {
     switch (pageRender) {
       case 'about':
-        return <About/>
+        return <About page={pageRender} changePage={setPageRender}/>
         
       case 'login':
-        return <Login/>
+        return <Login page={pageRender} changePage={setPageRender}/>
 
       case 'contact':
-        return <Contact/>
+        return <Contact page={pageRender} changePage={setPageRender}/>
 
       case 'signup':
-        return <Signup/>
+        return <Signup page={pageRender} changePage={setPageRender}/>
       
       case 'profile':
-        return <Profile/>
+        return <Profile page={pageRender} changePage={setPageRender}/>
     
       case 'display':
-        return <Display/>
+        return <Display page={pageRender} changePage={setPageRender}/>
 
       case 'input':
-        return <Input/>
+        return <Input page={pageRender} changePage={setPageRender}/>
 
       default:
-        return <About/>
+        return <About page={pageRender} changePage={setPageRender}/>
     }
   }
 
   return (
     <div>
       <Header/>
-      <RenderComponent/>
-      <Footer/>
+      <div>
+        <RenderComponent/>
+      </div>
+      <Footer page={pageRender} changePage={setPageRender}/>
     </div>
   );
 }

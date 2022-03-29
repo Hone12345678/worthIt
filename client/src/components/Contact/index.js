@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {validateEmail} from '../../utils/helpers';
 
-function ContactForm() {
+function ContactForm(props) {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
 
   const [errorMessage, setErrorMessage] = useState('');
@@ -12,6 +12,8 @@ function ContactForm() {
     if (!errorMessage) {
       console.log('Submit Form', formState);
     }
+    // need to figure out where to direct after submitting a contact email. temporary route below
+    props.changePage('profile')
   };
 
   const handleChange = (e) => {
