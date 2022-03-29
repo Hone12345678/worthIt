@@ -25,6 +25,15 @@ const userController = {
 		} catch (error) {
 			res.status(500).json(error)
 		}
+	},
+
+	editUser: async function (req, res) {
+		try {
+			const userData = await User.findByIdAndUpdate(req.params.userId)
+			res.json(userData)
+		} catch (error) {
+			res.status(500).json(error)
+		}
 	}
 
 }
