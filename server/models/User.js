@@ -1,13 +1,37 @@
 const { Schema, model } = require('mongoose')
 
+const gigsSchema = new Schema({
+  name: {
+    type: String,
+    allowNull: false,
+    required: true,
+    trim: true
+  }
+})
+
+const carSchema = new Schema({
+  car: {
+    type: String,
+    allowNull: false,
+    required: true,
+    trim: true
+  },
+  mph: {
+    type: Number,
+    allowNull: false,
+    required: true,
+    trim: true
+  }
+})
+
 const userSchema = new Schema ({
-  userName: {
+  username: {
     type: String,
     allowNull: false,
     required: true,
     unique: true,
     trim: true,
-    maxLength: 15
+    maxLength: 20
   },
   email: {
     type: String,
@@ -21,7 +45,7 @@ const userSchema = new Schema ({
     allowNull: false,
     trim: true,
     required: true,
-    length: 8
+    minLength: 8
   },
   pay: {
     type: Number,
@@ -29,12 +53,8 @@ const userSchema = new Schema ({
     trim: true,
     required: true
   },
-  timeShopping: {
-    type: Number,
-    allowNull: false,
-    trim: true,
-    required: true
-  }
+  car: [carSchema],
+  gigs: [gigsSchema]
 })
 
 const User = model('user', userSchema)

@@ -25,6 +25,15 @@ const storeController = {
 		} catch (error) {
 			res.status(500).json(error)
 		}
+	},
+
+	editStore: async function (req, res) {
+		try {
+			const storeData = await Store.findByIdAndUpdate(req.params.storeId)
+			res.json(storeData)
+		} catch (error) {
+			res.status(500).json(error)
+		}
 	}
 
 }
