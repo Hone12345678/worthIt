@@ -7,8 +7,8 @@ import Display from './components/Display'
 import Profile from './components/Profile'
 import Signup from './components/Signup'
 import Login from './components/Login'
-import Input from './components/Input'
 import About from './components/About'
+import Gig from './components/Gig';
 
 function App() {
 
@@ -31,12 +31,12 @@ function App() {
       
       case 'profile':
         return <Profile page={pageRender} changePage={setPageRender}/>
+
+        case 'gig':
+          return <Gig page={pageRender} changePage={setPageRender}/>
     
       case 'display':
         return <Display page={pageRender} changePage={setPageRender}/>
-
-      case 'input':
-        return <Input page={pageRender} changePage={setPageRender}/>
 
       default:
         return <About page={pageRender} changePage={setPageRender}/>
