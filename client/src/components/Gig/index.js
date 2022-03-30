@@ -17,13 +17,13 @@ function GigForm() {
    };
 
   function calculateHourly() {
-    hourlyOutput(time/60 * compensation)
-    console.log({calculateHourly});
+    hourlyOutput(60/time * compensation)
+    console.log({hourly});
   };
 
   function calculateTotal() {
     totalOutput(compensation - distance/mpg * gasPrice)
-    console.log({calculateTotal});
+    console.log({total});
   }
 
   return (

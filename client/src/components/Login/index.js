@@ -23,15 +23,15 @@ function ContactForm(props) {
       <h1 page>Login</h1>
       <form id="login-form" onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="username">Username: </label>
           <input type="text" name="username" defaultValue={''} />
         </div>
         <div>
-          <label htmlFor="email">Email address:</label>
+          <label htmlFor="email">Email address: </label>
           <input type="email" name="email" defaultValue={''} />
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">Password: </label>
           <input type="password" defaultValue={''} />
         </div>
         <button type="submit">Submit</button>
