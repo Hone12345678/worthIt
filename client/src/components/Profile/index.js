@@ -2,7 +2,7 @@ function Profile(props) {
 
   function buttonHandler(e) {
     e.preventDefault();
-    props.changePage('input');
+    props.changePage('gig');
   }
 
   return (
