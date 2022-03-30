@@ -13,6 +13,7 @@ import About from './components/About'
 function App() {
 
   const [pageRender, setPageRender] = useState('login')
+  console.log(pageRender);
 
   const RenderComponent = (props) => {
     switch (pageRender) {
