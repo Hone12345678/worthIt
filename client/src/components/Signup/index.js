@@ -1,3 +1,4 @@
+
 function Signup(props) {
   const signupSubmit = (e) => {
     e.preventDefault();
@@ -22,10 +23,6 @@ function Signup(props) {
         </div>
         <div>
           <label htmlFor="pay">Desired Hourly Pay: </label>
-          <input type="number" defaultValue={''} />
-        </div>
-        <div>
-          <label htmlFor="timeShopping">Average time spent shopping (in seconds): </label>
           <input type="number" defaultValue={''} />
         </div>
         <button type="submit">Submit</button>
