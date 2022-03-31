@@ -9,27 +9,61 @@ const userController = {
 			res.status(500).json(error)
 		}
 	},
-	createUser: async function (req, res) {
+	createUser: async function ({body}, res) {
 		try {
-			const userData = await User.create(req.body)
+			const userData = await User.create(body)
 			res.json(userData)
 		} catch (error) {
 			res.status(500).json(error)
 		}
 
 	},
-	getUser: async function (req, res) {
+	getUser: async function ({params}, res) {
 		try {
-			const userData = await User.findById(req.params.userId)
+			const userData = await User.findById(params.userId)
 			res.json(userData)
 		} catch (error) {
 			res.status(500).json(error)
 		}
 	},
 
-	editUser: async function (req, res) {
+	editUser: async function ( {params, body}, res) {
 		try {
-			const userData = await User.findByIdAndUpdate(req.params.userId)
+			const userData = await User.findByIdAndUpdate(
+				{_id: params.userId},
+				{
+					username: body.username, 
+					email: body.email,
+					pay: body.pay
+				},
+				{new: true}
+				)
+			res.json(userData)
+		} catch (error) {
+			res.status(500).json(error)
+		}
+	},
+
+	addCar: async function ({params, body}, res) {
+		try {
+			const userData = await User.findOneAndUpdate(
+				{_id: params.userId},
+				{ $push: { car: body } },
+				{new: true}
+				)
+				res.json(userData)
+		} catch (error) {
+			res.status(500).json(error)
+		}
+	},
+
+	addGig: async function ({params, body}, res) {
+		try {
+			const userData = await User.findOneAndUpdate(
+				{_id: params.userId},
+				{$push: { gigs: body } },
+				{new: true}
+			)
 			res.json(userData)
 		} catch (error) {
 			res.status(500).json(error)
@@ -37,5 +71,6 @@ const userController = {
 	}
 
 }
+
 
 module.exports = userController
