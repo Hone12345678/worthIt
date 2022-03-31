@@ -44,9 +44,9 @@ function App() {
   }
 
   return (
-    <div>
+    <div className='bg-red'>
       <Header/>
-      <div>
+      <div className='bg-grey-100'>
         <RenderComponent/>
       </div>
       <Footer page={pageRender} changePage={setPageRender}/>

@@ -1,3 +1,5 @@
+import { Form, Button } from "react-bootstrap";
+
 function ContactForm(props) {
 
   const handleSubmit = async (e) => {
@@ -19,28 +21,28 @@ function ContactForm(props) {
   };
 
   return (
-    <section>
-      <h1 page>Login</h1>
-      <form id="login-form" onSubmit={handleSubmit}>
+    <Form className="container mb-3"  id="login-form" onSubmit={handleSubmit}>
+      <div className="row">
+        <Form.Group className="col">
+          <Form.Label htmlFor="username">Username:</Form.Label>
+          <Form.Control type="text" name="username" defaultValue={''} />
+        </Form.Group>
+        <Form.Group className="col">
+          <Form.Label htmlFor="email">Email address:</Form.Label>
+          <Form.Control type="email" name="email" defaultValue={''} />
+        </Form.Group>
+        <Form.Group className="col">
+          <Form.Label htmlFor="password">Password:</Form.Label>
+          <Form.Control type="password" defaultValue={''} />
+        </Form.Group>
+      </div >
+        <Button className="btn-sm" variant="primary" type="submit">Submit</Button>
         <div>
-          <label htmlFor="username">Username:</label>
-          <input type="text" name="username" defaultValue={''} />
+          <a onClick={aboutHandler}>How to use this App</a>
+          <br />
+          <span>Don't have a login? Create one <u><a onClick={signupHandler}>here</a></u>!</span>
         </div>
-        <div>
-          <label htmlFor="email">Email address:</label>
-          <input type="email" name="email" defaultValue={''} />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input type="password" defaultValue={''} />
-        </div>
-        <button type="submit">Submit</button>
-        <br/>
-        <a onClick={aboutHandler}>How to use this App</a>
-        <br/>
-        <span>Don't have a login? Create one <u><a onClick={signupHandler}>here</a></u>!</span>
-      </form>
-    </section>
+    </Form>
   );
 }
 
