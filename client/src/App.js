@@ -46,13 +46,13 @@ function App() {
   }
 
   return (
-    <div>
-      <Header
+    <div className='bg-background'>
+      <Header className="text-light"
         setCurrentComponent={setCurrentComponent}
         currentComponent={currentComponent}
       ></Header>
       
-      <div>
+      <div className='justify-content-center'>
         <RenderComponent/>
         {currentComponent === "login" && <Login />}
         {currentComponent === "about" && <About />}
