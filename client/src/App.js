@@ -12,8 +12,10 @@ import Gig from './components/Gig';
 
 function App() {
 
-  const [pageRender, setPageRender] = useState('login')
+  const [pageRender, setPageRender] = useState('login');
   console.log(pageRender);
+
+  const [currentComponent, setCurrentComponent] = useState('about');
 
   const RenderComponent = (props) => {
     switch (pageRender) {
@@ -44,11 +46,22 @@ function App() {
   }
 
   return (
-    <div className='bg-red'>
-      <Header/>
-      <div className='bg-grey-100'>
+    <div>
+      <Header
+        setCurrentComponent={setCurrentComponent}
+        currentComponent={currentComponent}
+      ></Header>
+      
+      <div>
         <RenderComponent/>
+        {currentComponent === "login" && <Login />}
+        {currentComponent === "about" && <About />}
+        {currentComponent === "contact" && <Contact />}
+        {currentComponent === "profile" && <Profile />}
+        {currentComponent === "gig" && <Gig />}
+        {currentComponent === "display" && <Display />}
       </div>
+
       <Footer page={pageRender} changePage={setPageRender}/>
     </div>
   );
