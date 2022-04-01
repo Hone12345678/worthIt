@@ -1,6 +1,41 @@
 const { User } = require("../models")
 
 const userController = {
+	loginUser: async function (req, res, next) {
+		try {
+			User.findOne(
+				{
+					username: req.body.username,
+				},
+				function (err, user) {
+					if (err) throw err;
+	
+					if (!user) {
+						res.status(401).json({
+							success: false,
+							msg: "Unable to authenticate.",
+						});
+					} else {
+						user.comparePassword(req.body.password, function (err, isMatch) {
+							if (isMatch && !err) {
+								var token = genToken(user.toJSON());
+	
+								res.status(200).json({ success: true, token: token });
+							} else {
+								res.status(401).json({
+									success: false,
+									msg: "Unable to authenticate.",
+								});
+							}
+						});
+					}
+				}
+			);
+		} catch (err) {
+			return res.status(500).json(err);
+		}
+	},
+
 	getUsers: async function (req, res) {
 		try {
 			const userData = await User.find()
@@ -9,15 +44,30 @@ const userController = {
 			res.status(500).json(error)
 		}
 	},
-	createUser: async function ({body}, res) {
+	createUser: async function (req, res, next) {
 		try {
-			const userData = await User.create(body)
-			res.json(userData)
-		} catch (error) {
-			res.status(500).json(error)
+			if (!req.body.username || !req.body.password) {
+				res.status(400).json({ success: false, msg: "Please pass username and password." });
+			} else {
+				var newUser = new User({
+					username: req.body.username,
+					password: req.body.password,
+				});
+	
+				newUser.save(function (err) {
+					if (err) {
+						return res.status(400).json({ success: false, msg: "Username already exists." });
+					}
+					var token = genToken(newUser.toJSON());
+	
+					res.status(200).json({ success: true, token: token });
+				});
+			}
+		} catch (err) {
+			return res.status(500).json(err);
 		}
-
 	},
+
 	getUser: async function ({params}, res) {
 		try {
 			const userData = await User.findById(params.userId)
@@ -68,8 +118,10 @@ const userController = {
 		} catch (error) {
 			res.status(500).json(error)
 		}
-	}
+	},
 
+
+	
 }
 
 

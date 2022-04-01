@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose')
-// const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt')
 
 const gigsSchema = new Schema({
   name: {
@@ -59,26 +59,49 @@ const userSchema = new Schema ({
     type: Number,
     allowNull: false,
     trim: true,
-    required: true
+  },
+  speed: {
+    type: Number,
+    trim: true
+  },
+  gasPrice: {
+    type: Number,
+    trim: true
   },
   car: [carSchema],
   gigs: [gigsSchema]
 })
 
-// // set up pre-save middleware to create password
-// userSchema.pre('save', async function(next) {
-//   if (this.isNew || this.isModified('password')) {
-//     const saltRounds = 10;
-//     this.password = await bcrypt.hash(this.password, saltRounds);
-//   }
 
-//   next();
-// });
 
-// // compare the incoming password with the hashed password
-// userSchema.methods.isCorrectPassword = async function(password) {
-//   return bcrypt.compare(password, this.password);
-// };
+userSchema.pre("save", function (next) {
+  const user = this;
+  if (this.isModified("password") || this.isNew) {
+    bcrypt.genSalt(10, function (err, salt) {
+      if (err) {
+        return next(err);
+      }
+      bcrypt.hash(user.password, salt, null, function (err, hash) {
+        if (err) {
+          return next(err);
+        }
+        user.password = hash;
+        return next();
+      });
+    });
+  } else {
+    return next();
+  }
+});
+
+userSchema.methods.comparePassword = function (passw, cb) {
+  bcrypt.compare(passw, this.password, function (err, isMatch) {
+    if (err) {
+      return cb(err);
+    }
+    cb(null, isMatch);
+  });
+};
 
 const User = model('user', userSchema)
 
