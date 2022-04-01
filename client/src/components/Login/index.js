@@ -1,3 +1,5 @@
+import { Form, Button } from "react-bootstrap";
+
 function ContactForm(props) {
 
   const handleSubmit = async (e) => {
@@ -19,28 +21,27 @@ function ContactForm(props) {
   };
 
   return (
-    <section>
-      <h1 page>Login</h1>
-      <form id="login-form" onSubmit={handleSubmit}>
+    <Form className="col-6 mx-auto neu d-grid gap-3" id="login-form" onSubmit={handleSubmit}>
+        <h2>Login</h2>
+        <Form.Group className="">
+          <Form.Label bsPrefix="neu-label" htmlFor="username">Username:</Form.Label>
+          <Form.Control bsPrefix="neu-input" type="text" name="username" defaultValue={''} />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label bsPrefix="neu-label" htmlFor="email">Email address:</Form.Label>
+          <Form.Control bsPrefix="neu-input" type="email" name="email" defaultValue={''} />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label bsPrefix="neu-label" htmlFor="password">Password:</Form.Label>
+          <Form.Control bsPrefix="neu-input" type="password" defaultValue={''} />
+        </Form.Group>
+        <Button bsPrefix="neu-button" variant="primary" className="neu-button" type="submit">Submit</Button>
         <div>
-          <label htmlFor="username">Username: </label>
-          <input type="text" name="username" defaultValue={''} />
+          <a onClick={aboutHandler}>How to use this App</a>
+          <br />
+          <span>Don't have a login? Create one <u><a onClick={signupHandler}>here</a></u>!</span>
         </div>
-        <div>
-          <label htmlFor="email">Email address: </label>
-          <input type="email" name="email" defaultValue={''} />
-        </div>
-        <div>
-          <label htmlFor="password">Password: </label>
-          <input type="password" defaultValue={''} />
-        </div>
-        <button type="submit">Submit</button>
-        <br/>
-        <a onClick={aboutHandler}>How to use this App</a>
-        <br/>
-        <span>Don't have a login? Create one <u><a onClick={signupHandler}>here</a></u>!</span>
-      </form>
-    </section>
+    </Form>
   );
 }
 

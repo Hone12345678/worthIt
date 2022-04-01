@@ -8,10 +8,9 @@ function Header(props) {
 
 
   return (
-    <header>
-      <nav className="">
-        <ul className="">
-          <h1 className="">
+    <header className="neu-header container mw-100">
+      <nav className="d-flex flex-row">
+          <h1 className="col">
             <a
               data-testid="link"
               href="/worthIt"
@@ -19,7 +18,7 @@ function Header(props) {
               Worth It
             </a>
           </h1>
-          <div className="">
+        <ul className="d-flex flex-row">
           <li className="">
             <a
               data-testid="about"
@@ -70,7 +69,6 @@ function Header(props) {
               Display
             </a>
           </li>
-          </div>
         </ul>
       </nav>
     </header>
