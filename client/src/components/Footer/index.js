@@ -8,8 +8,8 @@ function Footer(props) {
   }
 
   return (
-    <footer>
-      <button onClick={contactHandler}>Contact</button>
+    <footer className='neu-footer'>
+      <button className='neu-footer-btn' onClick={contactHandler}>Contact</button>
     </footer>
   );
 }
