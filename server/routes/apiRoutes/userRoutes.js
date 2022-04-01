@@ -1,6 +1,32 @@
 const router = require("express").Router()
-const { getUsers, createUser, getUser, editUser, addCar, addGig } = require("../../controller/userController")
+const { getUsers, createUser, getUser, editUser, addCar, addGig, removeCar, removeGig, loginUser } = require("../../controller/userController")
+const jwt = require("jsonwebtoken");
+const passport = require("passport");
+const config = require("../../config/database");
+const { User } = require("../../models");
 
+genToken = (user) => {
+  return jwt.sign(
+    {
+      id: user._id,
+      sub: user.id,
+      iat: new Date().getTime(),
+      exp: new Date().setDate(new Date().getDate() + 1),
+    },
+    config.jwt_secret
+  );
+};
+
+router.get(
+  "/secret",
+  passport.authenticate("jwt", { session: false }),
+  (req, res, next) => {
+    res.status(200).json("Secret Data");
+  }
+);
+
+router.route("/login")
+	.post(loginUser)
 
 router.route("/")
 	.get(getUsers)
@@ -13,10 +39,14 @@ router.route("/:userId")
 
 router.route("/:userId/car")
 	.put(addCar)
-	// .delete(removeCar)	
+
+router.route("/:userId/car/carId")
+	// .put(removeCar)	
 
 router.route("/:userId/gig")
-	.put(addGig)	
-	// .delete(removeGig)
+	.put(addGig)
+	
+	router.route("/:userId/gig/:gigId")
+	// .put(removeGig)
 
 module.exports = router
