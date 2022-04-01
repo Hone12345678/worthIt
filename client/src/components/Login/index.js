@@ -1,4 +1,5 @@
 import { Form, Button } from "react-bootstrap";
+import auth from "../../utils/auth";
 
 function ContactForm(props) {
 

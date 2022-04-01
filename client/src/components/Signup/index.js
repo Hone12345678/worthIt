@@ -1,8 +1,35 @@
 import { Form, Button } from "react-bootstrap";
+import auth from "../../utils/auth";
 
 function Signup(props) {
   const signupSubmit = (e) => {
     e.preventDefault();
+    const username = document.querySelector('#username-signup').value.trim();
+    const email = document.querySelector('#email-signup').value.trim();
+    const password = document.querySelector('#password-signup').value.trim();
+
+    if (username && email && password) {
+      fetch('/api/users/', {
+        method: 'post', 
+        body: JSON.stringify({
+          username,
+          email,
+          password
+        }),
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then(()=> {
+        setTimeout(()=> {
+          window.location.href = '/'
+        }, 100)
+  
+      })
+      .catch(err => {
+        alert(err.message)
+      })
+    }
+  };
+    
     props.changePage('profile')
   }
 
