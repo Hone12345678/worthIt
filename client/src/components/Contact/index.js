@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {validateEmail} from '../../utils/helpers';
+import { Form, Button } from "react-bootstrap";
 
 function ContactForm(props) {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
@@ -38,29 +39,27 @@ function ContactForm(props) {
   };
 
   return (
-    <section>
+      <Form className="col-6 mx-auto neu d-grid gap-3" id="contact-form" onSubmit={handleSubmit}>
       <h1>Contact me</h1>
-      <form id="contact-form" onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name: </label>
-          <input type="text" name="name" defaultValue={name} onBlur={handleChange} />
-        </div>
-        <div>
-          <label htmlFor="email">Email address: </label>
-          <input type="email" name="email" defaultValue={email} onBlur={handleChange} />
-        </div>
-        <div>
-          <label htmlFor="message">Message: </label>
-          <textarea name="message" rows="5" defaultValue={message} onBlur={handleChange} />
-        </div>
+        <Form.Group>
+          <Form.Label bsPrefix="neu-label" htmlFor="name">Name: </Form.Label>
+          <Form.Control bsPrefix="neu-input" type="text" name="name" defaultValue={name} onBlur={handleChange} />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label bsPrefix="neu-label" htmlFor="email">Email address: </Form.Label>
+          <Form.Control bsPrefix="neu-input" type="email" name="email" defaultValue={email} onBlur={handleChange} />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label bsPrefix="neu-label" htmlFor="message">Message: </Form.Label>
+          <Form.Control as="textarea" rows="5" bsPrefix="neu-input" name="message"  defaultValue={message} onBlur={handleChange} />
+        </Form.Group>
         {errorMessage && (
-          <div>
+          <Form.Group>
             <p className="error-text">{errorMessage}</p>
-          </div>
+          </Form.Group>
         )}
-        <button type="submit">Submit</button>
-      </form>
-    </section>
+        <Button bsPrefix="neu-button" variant="primary" className="neu-button" type="submit">Submit</Button>
+      </Form>
   );
 }
 

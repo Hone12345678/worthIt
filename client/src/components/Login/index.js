@@ -22,19 +22,20 @@ function ContactForm(props) {
 
   return (
     <Form className="col-6 mx-auto neu d-grid gap-3" id="login-form" onSubmit={handleSubmit}>
+        <h2>Login</h2>
         <Form.Group className="">
-          <Form.Label htmlFor="username">Username:</Form.Label>
-          <Form.Control className="neu-input" type="text" name="username" defaultValue={''} />
+          <Form.Label bsPrefix="neu-label" htmlFor="username">Username:</Form.Label>
+          <Form.Control bsPrefix="neu-input" type="text" name="username" defaultValue={''} />
         </Form.Group>
         <Form.Group>
-          <Form.Label htmlFor="email">Email address:</Form.Label>
-          <Form.Control className="neu-input" type="email" name="email" defaultValue={''} />
+          <Form.Label bsPrefix="neu-label" htmlFor="email">Email address:</Form.Label>
+          <Form.Control bsPrefix="neu-input" type="email" name="email" defaultValue={''} />
         </Form.Group>
         <Form.Group>
-          <Form.Label htmlFor="password">Password:</Form.Label>
-          <Form.Control className="neu-input" type="password" defaultValue={''} />
+          <Form.Label bsPrefix="neu-label" htmlFor="password">Password:</Form.Label>
+          <Form.Control bsPrefix="neu-input" type="password" defaultValue={''} />
         </Form.Group>
-        <Button variant="primary" className="neu-button" type="submit">Submit</Button>
+        <Button bsPrefix="neu-button" variant="primary" className="neu-button" type="submit">Submit</Button>
         <div>
           <a onClick={aboutHandler}>How to use this App</a>
           <br />

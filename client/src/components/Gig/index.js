@@ -27,11 +27,12 @@ function GigForm() {
   }
 
   return (
-    <div>
+    <div className="col-11 mx-auto neu d-grid gap-3">
+    <h1 className="col-4 mx-auto h-40 neu">Trip Calculator</h1>
 
-    <h1>Trip Calculator</h1>
+    <div className='d-flex flex-row'>
 
-    <div>
+    <div className="col-5 mx-auto neu d-grid gap-3">
       <h3>Distance</h3>
       <input 
       type="number" 
@@ -67,7 +68,7 @@ function GigForm() {
       value={compensation} 
       onChange={e => compInput(e.target.value)} />
     </div>
-
+    <div className="col-5 mx-auto neu d-grid gap-3">
     <button onClick={calculateFuel}>Fuel Used</button>
     <h2>{fuel} gallons</h2>
 
@@ -76,6 +77,9 @@ function GigForm() {
 
     <button onClick={calculateTotal}>Total</button>
     <h2>${total}</h2>
+
+    </div>
+    </div>
 
 
     </div>
