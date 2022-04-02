@@ -1,7 +1,12 @@
 import { Form, Button } from "react-bootstrap";
+import React from 'react';
 import auth from "../../utils/auth";
 
 function Signup(props) {
+  const {
+    setCurrentComponent
+  } = props; 
+
   const signupSubmit = (e) => {
     e.preventDefault();
     const username = document.querySelector('#username-signup').value.trim();
@@ -28,9 +33,9 @@ function Signup(props) {
         alert(err.message)
       })
     }
+    props.changePage('signup')
   };
     
-    props.changePage('profile')
 
   return (
     <Form className="col-6 mx-auto neu d-grid gap-3" id="login-form" onSubmit={signupSubmit}>

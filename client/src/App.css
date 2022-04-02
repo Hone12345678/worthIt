@@ -166,3 +166,12 @@ input::placeholder {
     transform: rotate(360deg);
   }
 }
+
+body {
+  height: 100%;
+}
+
+.hfull {
+  height: 100%;
+}
+
