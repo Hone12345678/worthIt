@@ -64,6 +64,7 @@ const userController = {
           username: req.body.username,
           email: req.body.email,
 					password: req.body.password,
+          desiredHP: req.body.desiredHP
 				});
 	
 				newUser.save(function (err) {

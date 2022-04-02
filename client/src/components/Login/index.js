@@ -26,7 +26,7 @@ function Login(props) {
   // };
 
   return (
-    <Form className="col-6 mx-auto neu d-grid gap-3 pb" id="login-form" onSubmit={handleSubmit}>
+    <Form className="col-6 mx-auto neu d-grid gap-3 pb align-middle mh-100 my-" id="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
         <Form.Group className="">
           <Form.Label bsPrefix="neu-label" htmlFor="username">Username:</Form.Label>
