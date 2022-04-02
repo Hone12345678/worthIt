@@ -1,3 +1,5 @@
+import { Form, Button } from "react-bootstrap";
+
 function Profile(props) {
 
   function buttonHandler(e) {
@@ -6,16 +8,22 @@ function Profile(props) {
   }
 
   return (
-    <div className="col-6 mx-auto neu d-grid gap-3">
+    <Form className="col-6 mx-auto neu d-grid gap-3" id="login-form">
       <h2>Profile</h2>
       <section>
         <p>Username</p>
         <p>Email</p>
-        <p>Desired Pay Rate</p>
-        <p>Average Time Shopping (seconds)</p>
-        <button className='neu-button' onClick={buttonHandler}>Get Started!</button>
+        <Form.Group className="">
+          <Form.Label bsPrefix="neu-label" htmlFor="username">Desired Pay Rate: </Form.Label>
+          <Form.Control bsPrefix="neu-input" type="text" name="username" defaultValue={''} />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label bsPrefix="neu-label" htmlFor="email">Average Time Shopping (seconds): </Form.Label>
+          <Form.Control bsPrefix="neu-input" type="email" name="email" defaultValue={''} />
+        </Form.Group>
+        <Button className='neu-button' onClick={buttonHandler}>Get Started!</Button>
       </section>
-    </div>
+    </Form>
   );
 }
 
