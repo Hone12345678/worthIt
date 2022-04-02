@@ -19,12 +19,12 @@ const userController = {
 						user.comparePassword(req.body.password, function (err, isMatch) {
 							if (isMatch && !err) {
 								var token = genToken(user.toJSON());
-	
+                console.log("be", token)
 								res.status(200).json({ success: true, token: token });
 							} else {
 								res.status(401).json({
 									success: false,
-									msg: "Unable to authenticate.",
+									msg: "Unable to password.",
 								});
 							}
 						});

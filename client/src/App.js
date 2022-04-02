@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer'
 import Profile from './components/Profile'
@@ -7,12 +7,22 @@ import Signup from './components/Signup'
 import Login from './components/Login'
 import About from './components/About'
 import Gig from './components/Gig';
+import AuthService from './utils/auth';
 
 function App() {
 
   const [currentComponent, setCurrentComponent] = useState('login');
 
+  // 
   const [loginSelected, setLoginSelected] = useState(false);
+
+  useEffect(() => {
+    setLoginSelected(AuthService.loggedIn())
+    if(loginSelected === true) {
+      setCurrentComponent('profile')
+    }
+  }, [loginSelected])
+
   console.log(loginSelected);
 
   return (
