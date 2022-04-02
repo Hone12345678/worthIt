@@ -45,9 +45,7 @@ const userController = {
 		}
 	},
 	createUser: async function (req, res, next) {
-    console.log('createUser base')
 		try {
-      console.log("this is the req")
 			if (!req.body.username || !req.body.password) {
 				res.status(400).json({ success: false, msg: "Please pass username and password." });
 			} else {
@@ -56,16 +54,12 @@ const userController = {
           email: req.body.email,
 					password: req.body.password,
 				});
-        console.log('createUser new user')
 	
 				newUser.save(function (err) {
-          console.log("I made it to line 62")
 					if (err) {
-            console.log(err)
 						return res.status(400).json({ success: false, msg: "Username already exists." });
 					}
 					var token = genToken(newUser.toJSON());
-          console.log('token', token)
 					res.status(200).json({ success: true, token: token });
 				});
 			}
