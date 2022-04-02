@@ -5,7 +5,7 @@ const userController = {
 		try {
 			User.findOne(
 				{
-					username: req.body.username,
+					username: req.body.username
 				},
 				function (err, user) {
 					if (err) throw err;
@@ -44,6 +44,17 @@ const userController = {
 			res.status(500).json(error)
 		}
 	},
+
+	removeUser: async function ({params}, res) {
+		console.log(params);
+		try {
+			const userData = await User.findByIdAndDelete(params.userId)
+			res.json(userData)
+		} catch (error) {
+			res.status(500).json(error)
+		}
+	},
+
 	createUser: async function (req, res, next) {
 		try {
 			if (!req.body.username || !req.body.password) {
@@ -82,9 +93,9 @@ const userController = {
 			const userData = await User.findByIdAndUpdate(
 				{_id: params.userId},
 				{
-					username: body.username, 
-					email: body.email,
-					pay: body.pay
+					speed: body.speed,
+					pay: body.pay,
+					gasPrice: body.gasPrice
 				},
 				{new: true}
 				)
@@ -112,6 +123,34 @@ const userController = {
 			const userData = await User.findOneAndUpdate(
 				{_id: params.userId},
 				{$push: { gigs: body } },
+				{new: true}
+			)
+			res.json(userData)
+		} catch (error) {
+			res.status(500).json(error)
+		}
+	},
+
+	removeGig: async function ({params}, res) {
+		console.log(params);
+		try {
+			const userData = await User.findOneAndUpdate(
+				{_id: params.userId},
+				{$pull: { gigs: { _id: params.gigId} } },
+				{new: true}
+			)
+			res.json(userData)
+		} catch (error) {
+			res.status(500).json(error)
+		}
+	},
+
+	removeCar: async function ({params}, res) {
+		console.log(params);
+		try {
+			const userData = await User.findOneAndUpdate(
+				{_id: params.userId},
+				{$pull: { car: {_id: params.carId} } },
 				{new: true}
 			)
 			res.json(userData)
