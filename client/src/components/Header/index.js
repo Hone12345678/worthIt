@@ -31,16 +31,6 @@ function Header(props) {
           </li>
           <li className="">
             <a
-              data-testid="contact"
-              href="#contact"
-              onClick={() => setCurrentComponent("contact")}
-              className=""
-            >
-              Contact
-            </a>
-          </li>
-          <li className="">
-            <a
               data-testid="profile"
               href="#profile"
               onClick={() => setCurrentComponent("profile")}
