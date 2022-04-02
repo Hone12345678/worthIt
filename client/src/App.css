@@ -11,6 +11,10 @@
   --button-input-blur: 10px;
 }
 
+body {
+  height: 1vh;
+}
+
 .App {
   text-align: center;
 }
