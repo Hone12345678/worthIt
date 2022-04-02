@@ -2,7 +2,6 @@ import './App.css';
 import { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer'
-import Contact from './components/Contact'
 import Display from './components/Display'
 import Profile from './components/Profile'
 import Signup from './components/Signup'
@@ -24,9 +23,6 @@ function App() {
         
       case 'login':
         return <Login page={pageRender} changePage={setPageRender}/>
-
-      case 'contact':
-        return <Contact page={pageRender} changePage={setPageRender}/>
 
       case 'signup':
         return <Signup page={pageRender} changePage={setPageRender}/>
@@ -56,7 +52,6 @@ function App() {
         <RenderComponent/>
         {currentComponent === "login" && <Login />}
         {currentComponent === "about" && <About />}
-        {currentComponent === "contact" && <Contact />}
         {currentComponent === "profile" && <Profile />}
         {currentComponent === "gig" && <Gig />}
         {currentComponent === "display" && <Display />}
