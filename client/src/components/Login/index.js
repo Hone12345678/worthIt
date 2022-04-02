@@ -15,7 +15,7 @@ function Login(props) {
   };
 
 
-  const signupSubmit = (e) => {
+  const loginSubmit = (e) => {
     e.preventDefault();
     console.log(e);
     const username = document.querySelector('#username').value.trim();
@@ -25,8 +25,8 @@ function Login(props) {
 
     
     if (username && email && password) {
-      fetch('/api/users/', {
-        method: 'post', 
+      fetch('/api/users/login', {
+        method: 'POST', 
         body: JSON.stringify({
           username,
           email,
@@ -34,9 +34,11 @@ function Login(props) {
         }),
         headers: { 'Content-Type': 'application/json' }
       })
+      .then((res)=> {return res.json()})
       .then((res)=> {
 
         AuthService.login(res.token)
+        console.log("login", res)
         setLoginSelected(true)
         setCurrentComponent("profile")
   
@@ -48,7 +50,7 @@ function Login(props) {
   };
 
   return (
-    <Form className="col-6 mx-auto neu d-grid gap-3 pb align-middle mh-100 my-" id="login-form" onSubmit={signupSubmit}>
+    <Form className="col-6 mx-auto neu d-grid gap-3 pb align-middle mh-100 my-" id="login-form" onSubmit={loginSubmit}>
         <h2>Login</h2>
         <Form.Group className="">
           <Form.Label bsPrefix="neu-label" htmlFor="username">Username:</Form.Label>

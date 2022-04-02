@@ -12,7 +12,9 @@ function Profile(props) {
   }
 
   useEffect(() => {
-    fetch("/api/users/:id")
+    // const userId = need to create a function that will return the userId
+  
+    fetch("/api/users/")
       .then(res => res.json())
       .then(
         (result) => {
