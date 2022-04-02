@@ -1,15 +1,12 @@
-import { useState } from 'react'
-import Contact from '../Contact'
+import React from 'react';
 
-function Footer(props) {
 
-  const contactHandler = () => {
-    props.changePage('contact')
-  }
+function Footer() {
+  
 
   return (
     <footer className='neu-footer'>
-      <button className='neu-footer-btn' onClick={contactHandler}>Contact</button>
+      <a href="mailto:worth_it_app@outlook.com">Contact Us Here!</a>
     </footer>
   );
 }

@@ -1,6 +1,6 @@
 import { Form, Button } from "react-bootstrap";
 
-function ContactForm(props) {
+function Login(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,4 +46,4 @@ function ContactForm(props) {
 }
 
 
-export default ContactForm
+export default Login
