@@ -31,7 +31,6 @@ function Signup(props) {
   };
     
     props.changePage('profile')
-  }
 
   return (
     <Form className="col-6 mx-auto neu d-grid gap-3" id="login-form" onSubmit={signupSubmit}>

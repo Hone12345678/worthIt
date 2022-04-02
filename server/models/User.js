@@ -77,15 +77,21 @@ const userSchema = new Schema ({
 userSchema.pre("save", function (next) {
   const user = this;
   if (this.isModified("password") || this.isNew) {
+    console.log('pre')
     bcrypt.genSalt(10, function (err, salt) {
+      console.log('start salting');
       if (err) {
+        console.log('genSalt user model', err);
         return next(err);
       }
-      bcrypt.hash(user.password, salt, null, function (err, hash) {
+      bcrypt.hash(user.password, salt, function (err, hash) {
+        console.log('start hashing')
         if (err) {
+          console.log('hash user model', err);
           return next(err);
         }
         user.password = hash;
+        console.log(user.password)
         return next();
       });
     });
