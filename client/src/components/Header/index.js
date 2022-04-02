@@ -18,7 +18,7 @@ function Header(props) {
               Worth It
             </a>
           </h1>
-        <ul className="d-flex flex-row">
+        <ul className="d-flex flex-row mx-auto">
           <li className="">
             <a
               data-testid="about"
