@@ -1,10 +1,11 @@
 import { Form, Button } from "react-bootstrap";
 import React from 'react';
-import auth from "../../utils/auth";
+import AuthService from "../../utils/auth";
 
 function Login(props) {
   const {
-    setCurrentComponent
+    setCurrentComponent,
+    setLoginSelected
   } = props; 
 
   const handleSubmit = async (e) => {
@@ -34,18 +35,16 @@ function Login(props) {
         headers: { 'Content-Type': 'application/json' }
       })
       .then((res)=> {
-        setTimeout(()=> {
-          window.location.href = '/'
-        }, 100)
-        console.log(res)
+
+        AuthService.login(res.token)
+        setLoginSelected(true)
+        setCurrentComponent("profile")
   
       })
       .catch(err => {
         alert(err.message)
       })
     }
-    // props.changePage('login')   
-    // maybe change to profile for  redirect
   };
 
   return (

@@ -49,16 +49,6 @@ function Header(props) {
               Gig
             </a>
           </li>
-          <li className="px-3">
-            <a
-              data-testid="display"
-              href="#display"
-              onClick={() => setCurrentComponent("display")}
-              className=""
-            >
-              Display
-            </a>
-          </li>
         </ul>
       </nav>
     </header>

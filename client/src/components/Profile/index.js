@@ -9,11 +9,10 @@ function Profile(props) {
 
   function buttonHandler(e) {
     e.preventDefault();
-    props.changePage('gig');
   }
 
   useEffect(() => {
-    fetch("/api/users/62479f831198b33e84c9280c")
+    fetch("/api/users/:id")
       .then(res => res.json())
       .then(
         (result) => {

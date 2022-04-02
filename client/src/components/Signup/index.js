@@ -4,7 +4,8 @@ import AuthService from "../../utils/auth";
 
 function Signup(props) {
   const {
-    setCurrentComponent
+    setCurrentComponent,
+    setLoginSelected
   } = props; 
 
   const signupSubmit = (e) => {
@@ -28,16 +29,14 @@ function Signup(props) {
       .then((res)=> {return res.json()
 
       }).then((res)=> {
-        setTimeout(()=> {
-          window.location.href = '/'
-        }, 100)
         AuthService.login(res.token)
+        setLoginSelected(true);
+        setCurrentComponent("about")
       }).catch(err => {
         alert(err.message)
     })
   }
 }
-    // props.changePage('signup')
   
   
     
