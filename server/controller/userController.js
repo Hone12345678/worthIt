@@ -49,8 +49,9 @@ const userController = {
 			if (!req.body.username || !req.body.password) {
 				res.status(400).json({ success: false, msg: "Please pass username and password." });
 			} else {
-				var newUser = new User({
-					username: req.body.username,
+        var newUser = new User({
+          username: req.body.username,
+          email: req.body.email,
 					password: req.body.password,
 				});
 	
@@ -59,7 +60,6 @@ const userController = {
 						return res.status(400).json({ success: false, msg: "Username already exists." });
 					}
 					var token = genToken(newUser.toJSON());
-	
 					res.status(200).json({ success: true, token: token });
 				});
 			}

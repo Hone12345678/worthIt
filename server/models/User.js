@@ -81,7 +81,7 @@ userSchema.pre("save", function (next) {
       if (err) {
         return next(err);
       }
-      bcrypt.hash(user.password, salt, null, function (err, hash) {
+      bcrypt.hash(user.password, salt, function (err, hash) {
         if (err) {
           return next(err);
         }
