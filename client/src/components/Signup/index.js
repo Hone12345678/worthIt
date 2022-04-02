@@ -1,6 +1,6 @@
 import { Form, Button } from "react-bootstrap";
 import React from 'react';
-import auth from "../../utils/auth";
+import AuthService from "../../utils/auth";
 
 function Signup(props) {
   const {
@@ -9,32 +9,37 @@ function Signup(props) {
 
   const signupSubmit = (e) => {
     e.preventDefault();
-    const username = document.querySelector('#username-signup').value.trim();
-    const email = document.querySelector('#email-signup').value.trim();
-    const password = document.querySelector('#password-signup').value.trim();
+    const username = document.querySelector('#username').value.trim();
+    const email = document.querySelector('#email').value.trim();
+    const password = document.querySelector('#password').value.trim();
+    const desiredHP = document.querySelector('#desiredHP').value.trim();
 
-    if (username && email && password) {
+    if (username && email && password && desiredHP) {
       fetch('/api/users/', {
         method: 'post', 
         body: JSON.stringify({
           username,
           email,
-          password
+          password,
+          desiredHP
         }),
         headers: { 'Content-Type': 'application/json' }
       })
-      .then(()=> {
+      .then((res)=> {return res.json()
+
+      }).then((res)=> {
         setTimeout(()=> {
           window.location.href = '/'
         }, 100)
-  
-      })
-      .catch(err => {
+        AuthService.login(res.token)
+      }).catch(err => {
         alert(err.message)
-      })
-    }
-    props.changePage('signup')
-  };
+    })
+  }
+}
+    // props.changePage('signup')
+  
+  
     
 
   return (
@@ -43,19 +48,19 @@ function Signup(props) {
 
       <Form.Group>
         <Form.Label htmlFor="username">Username: </Form.Label>
-        <Form.Control bsPrefix="neu-input" type="text" name="username" defaultValue={''} />
+        <Form.Control bsPrefix="neu-input"  id = "username" type="text" name="username" defaultValue={''} />
       </Form.Group>
       <Form.Group>
         <Form.Label htmlFor="email">Email address: </Form.Label>
-        <Form.Control bsPrefix="neu-input" type="email" name="email" defaultValue={''} />
+        <Form.Control bsPrefix="neu-input" id = "email" type="email" name="email" defaultValue={''} />
       </Form.Group>
       <Form.Group>
         <Form.Label htmlFor="password">Password: </Form.Label>
-        <Form.Control bsPrefix="neu-input" type="password" defaultValue={''} />
+        <Form.Control bsPrefix="neu-input" id = "password" type="password" defaultValue={''} />
       </Form.Group>
       <Form.Group>
         <Form.Label htmlFor="pay">Desired Hourly Pay: </Form.Label>
-        <Form.Control bsPrefix="neu-input" type="number" defaultValue={''} />
+        <Form.Control bsPrefix="neu-input" id = "desiredHP" type="number" defaultValue={''} />
       </Form.Group>
       <Button bsPrefix="neu-button" variant="primary" className="neu-button" type="submit">Submit</Button>
     </Form>
