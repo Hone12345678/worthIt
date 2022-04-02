@@ -1,7 +1,11 @@
 import { Form, Button } from "react-bootstrap";
+import React from 'react';
 import auth from "../../utils/auth";
 
 function Login(props) {
+  const {
+    setCurrentComponent
+  } = props; 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -9,20 +13,20 @@ function Login(props) {
     props.changePage('profile')
   };
 
-  const aboutHandler = async (e) => {
-    e.preventDefault();
-    // needs code to send the information from the inputs to authenticate and sign in
-    props.changePage('about')
-  };
+  // const aboutHandler = async (e) => {
+  //   e.preventDefault();
+  //   // needs code to send the information from the inputs to authenticate and sign in
+  //   props.changePage('about')
+  // };
 
-  const signupHandler = async (e) => {
-    e.preventDefault();
-    // needs code to send the information from the inputs to authenticate and sign in
-    props.changePage('signup')
-  };
+  // const signupHandler = async (e) => {
+  //   e.preventDefault();
+  //   // needs code to send the information from the inputs to authenticate and sign in
+  //   props.changePage('signup')
+  // };
 
   return (
-    <Form className="col-6 mx-auto neu d-grid gap-3" id="login-form" onSubmit={handleSubmit}>
+    <Form className="col-6 mx-auto neu d-grid gap-3 pb" id="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
         <Form.Group className="">
           <Form.Label bsPrefix="neu-label" htmlFor="username">Username:</Form.Label>
@@ -38,9 +42,9 @@ function Login(props) {
         </Form.Group>
         <Button bsPrefix="neu-button" variant="primary" className="neu-button" type="submit">Submit</Button>
         <div>
-          <a onClick={aboutHandler}>How to use this App</a>
+          <a href="#about" onClick={() => setCurrentComponent("about")} >How to use this App</a>
           <br />
-          <span>Don't have a login? Create one <u><a onClick={signupHandler}>here</a></u>!</span>
+          <span>Don't have a login? Create one <u><a href="#signup" onClick={() => setCurrentComponent("signup")}>here</a></u>!</span>
         </div>
     </Form>
   );
