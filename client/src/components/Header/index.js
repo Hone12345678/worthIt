@@ -8,9 +8,9 @@ function Header(props) {
 
 
   return (
-    <header className="neu-header container mw-100">
-      <nav className="d-flex flex-row">
-          <h1 className="col">
+    <header className="neu-header container mw-100 px-4">
+      <nav className="d-flex flex-row gx-5 align-items-center m-0">
+          <h1 className="col m-0">
             <a
               data-testid="link"
               href="/worthIt"
@@ -18,8 +18,8 @@ function Header(props) {
               Worth It
             </a>
           </h1>
-        <ul className="d-flex flex-row mx-auto">
-          <li className="">
+        <ul className="d-flex flex-row align-items-center m-0">
+          <li className="px-3">
             <a
               data-testid="about"
               href="#about"
@@ -29,7 +29,7 @@ function Header(props) {
               About
             </a>
           </li>
-          <li className="">
+          <li className="px-3">
             <a
               data-testid="profile"
               href="#profile"
@@ -39,7 +39,7 @@ function Header(props) {
               Profile
             </a>
           </li>
-          <li className="">
+          <li className="px-3">
             <a
               data-testid="gig"
               href="#gig"
@@ -49,7 +49,7 @@ function Header(props) {
               Gig
             </a>
           </li>
-          <li className="">
+          <li className="px-3">
             <a
               data-testid="display"
               href="#display"

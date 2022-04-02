@@ -11,6 +11,8 @@ import Gig from './components/Gig';
 
 function App() {
 
+  
+
   // const [pageRender, setPageRender] = useState('login');
   // console.log(pageRender);
 
@@ -48,7 +50,7 @@ function App() {
         currentComponent={currentComponent}
       ></Header>
       
-      <div className='justify-content-center'>
+      <div className='justify-content-center h-100'>
         {/* <RenderComponent/> */}
         {currentComponent === "login" && <Login setCurrentComponent={setCurrentComponent}
         currentComponent={currentComponent}/>}
