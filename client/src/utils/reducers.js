@@ -5,7 +5,6 @@ CONTACT,
 SIGNUP,
 PROFILE, 
 GIG,
-DISPLAY,
 } from './actions'
 import { useReducer } from 'react';
 
@@ -40,11 +39,6 @@ export const reducer = (state, action) => {
         currentCategory: action.currentCategory,
       };
     case GIG:
-      return {
-        ...state,
-        currentCategory: action.currentCategory,
-      };
-    case DISPLAY:
       return {
         ...state,
         currentCategory: action.currentCategory,

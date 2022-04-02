@@ -2,7 +2,6 @@ import './App.css';
 import { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer'
-import Display from './components/Display'
 import Profile from './components/Profile'
 import Signup from './components/Signup'
 import Login from './components/Login'
@@ -11,37 +10,10 @@ import Gig from './components/Gig';
 
 function App() {
 
-  
-
-  // const [pageRender, setPageRender] = useState('login');
-  // console.log(pageRender);
-
   const [currentComponent, setCurrentComponent] = useState('login');
 
-  // const RenderComponent = (props) => {
-  //   switch (pageRender) {
-  //     case 'about':
-  //       return <About page={pageRender} changePage={setPageRender}/>
-        
-  //     case 'login':
-  //       return <Login page={pageRender} changePage={setPageRender}/>
-
-  //     case 'signup':
-  //       return <Signup page={pageRender} changePage={setPageRender}/>
-      
-  //     case 'profile':
-  //       return <Profile page={pageRender} changePage={setPageRender}/>
-
-  //       case 'gig':
-  //         return <Gig page={pageRender} changePage={setPageRender}/>
-    
-  //     case 'display':
-  //       return <Display page={pageRender} changePage={setPageRender}/>
-
-  //     default:
-  //       return <About page={pageRender} changePage={setPageRender}/>
-  //   }
-  // }
+  const [loginSelected, setLoginSelected] = useState(false);
+  console.log(loginSelected);
 
   return (
     <div className='bg-background hfull'>
@@ -51,14 +23,21 @@ function App() {
       ></Header>
       
       <div className='justify-content-center h-100'>
-        {/* <RenderComponent/> */}
-        {currentComponent === "login" && <Login setCurrentComponent={setCurrentComponent}
-        currentComponent={currentComponent}/>}
-        {currentComponent === "signup" && <Signup />}
+      {!loginSelected ? (
+        <>
+        {currentComponent === "login" ? 
+
+          <Login setCurrentComponent={setCurrentComponent} currentComponent={currentComponent} setLoginSelected={setLoginSelected}></Login>:
+          <Signup setLoginSelected={setLoginSelected} setCurrentComponent={setCurrentComponent}></Signup>
+          }
+        </>
+        ) : (
+          <>
+        {currentComponent === "gig" && <Gig setCurrentComponent={setCurrentComponent} currentComponent={currentComponent}/>}
         {currentComponent === "about" && <About />}
         {currentComponent === "profile" && <Profile />}
-        {currentComponent === "gig" && <Gig />}
-        {currentComponent === "display" && <Display />}
+        </>
+        )}
       </div>
 
       <Footer page={currentComponent} changePage={setCurrentComponent}/>
