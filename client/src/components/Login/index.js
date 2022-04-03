@@ -19,9 +19,7 @@ function Login(props) {
 
   const loginSubmit = (e) => {
     e.preventDefault();
-    console.log(e);
     const username = document.querySelector('#username').value.trim();
-    console.log(username);
     const email = document.querySelector('#email').value.trim();
     const password = document.querySelector('#password').value.trim();
 
@@ -40,7 +38,6 @@ function Login(props) {
       .then((res)=> {
 
         AuthService.login(res.token)
-        console.log("login", res)
         setLoginSelected(true)
         setCurrentComponent("profile")
   

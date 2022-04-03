@@ -23,8 +23,6 @@ function App() {
     }
   }, [loginSelected])
 
-  console.log(loginSelected);
-
   return (
     <div className='bg-background h-full'>
       <Header className="text-light"
@@ -45,7 +43,7 @@ function App() {
           <>
         {currentComponent === "gig" && <Gig setCurrentComponent={setCurrentComponent} currentComponent={currentComponent}/>}
         {currentComponent === "about" && <About />}
-        {currentComponent === "profile" && <Profile />}
+        {currentComponent === "profile" && <Profile setCurrentComponent={setCurrentComponent}/>}
         </>
         )}
       </div>

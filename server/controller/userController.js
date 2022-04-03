@@ -22,7 +22,6 @@ const userController = {
 						user.comparePassword(req.body.password, function (err, isMatch) {
 							if (isMatch && !err) {
 								var token = genToken(user.toJSON());
-                console.log("be", token)
 								res.status(200).json({ success: true, token: token });
 							} else {
 								res.status(401).json({
@@ -51,7 +50,6 @@ const userController = {
 
 	// delete individual user by id
 	removeUser: async function ({params}, res) {
-		console.log(params);
 		try {
 			const userData = await User.findByIdAndDelete(params.userId)
 			res.json(userData)
@@ -144,7 +142,6 @@ const userController = {
 
 	// remove "Gig" asocaited with the user
 	removeGig: async function ({params}, res) {
-		console.log(params);
 		try {
 			const userData = await User.findOneAndUpdate(
 				{_id: params.userId},
@@ -159,7 +156,6 @@ const userController = {
 
 	// remove car asocaited with the user
 	removeCar: async function ({params}, res) {
-		console.log(params);
 		try {
 			const userData = await User.findOneAndUpdate(
 				{_id: params.userId},
