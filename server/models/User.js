@@ -1,6 +1,9 @@
+// user schema
+
 const { Schema, model } = require('mongoose')
 const bcrypt = require('bcrypt')
 
+// gig
 const gigsSchema = new Schema({
   name: {
     type: String,
@@ -10,6 +13,7 @@ const gigsSchema = new Schema({
   }
 })
 
+// car
 const carSchema = new Schema({
 
   car: {
@@ -32,6 +36,7 @@ const carSchema = new Schema({
 }
 )
 
+// user
 const userSchema = new Schema ({
   username: {
     type: String,
@@ -73,7 +78,7 @@ const userSchema = new Schema ({
 })
 
 
-
+// password encryption
 userSchema.pre("save", function (next) {
   const user = this;
   if (this.isModified("password") || this.isNew) {

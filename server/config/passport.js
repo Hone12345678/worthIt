@@ -1,3 +1,5 @@
+// setting up passport
+
 const passport = require("passport");
 var JwtStrategy = require("passport-jwt").Strategy,
   ExtractJwt = require("passport-jwt").ExtractJwt;
