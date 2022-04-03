@@ -30,6 +30,8 @@ function App() {
       <Header className="text-light"
         setCurrentComponent={setCurrentComponent}
         currentComponent={currentComponent}
+        loginSelected={loginSelected}
+        setLoginSelected={setLoginSelected}
       ></Header>
       
       <div className='justify-content-center h-100'>
