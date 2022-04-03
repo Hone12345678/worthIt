@@ -15,17 +15,14 @@ function GigForm() {
   
   function calculateFuel() {
     fuelOutput(distance / mpg)
-    console.log({fuel});
    };
 
   function calculateHourly() {
     hourlyOutput(60/time * compensation)
-    console.log({hourly});
   };
 
   function calculateTotal() {
     totalOutput(compensation - distance/mpg * gasPrice)
-    console.log({total});
   }
 
   return (

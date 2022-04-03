@@ -17,7 +17,6 @@ function Profile(props) {
 
   
   const userId= AuthService.getProfile().id;
-  console.log("profile", userId);
  
   const buttonHandler = (e) => {
     e.preventDefault();
@@ -33,9 +32,8 @@ function Profile(props) {
       headers: { 'Content-Type': 'application/json' }
     })
     .then((res)=> {return res.json()})
-      .then((res)=> {
-        console.log("put function", res)
-      })
+      // .then((res)=> {
+      // })
       .catch(err => {
         alert(err.message)
       })
@@ -51,7 +49,6 @@ function Profile(props) {
         (result) => {
           setIsLoaded(true);
           setItems(result);
-          console.log(result)
         },
         (error) => {
           setIsLoaded(true);

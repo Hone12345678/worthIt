@@ -23,8 +23,6 @@ function App() {
     }
   }, [loginSelected])
 
-  console.log(loginSelected);
-
   return (
     <div className='bg-background hfull'>
       <Header className="text-light"
