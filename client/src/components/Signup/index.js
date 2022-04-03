@@ -32,6 +32,7 @@ function Signup(props) {
       .then((res)=> {return res.json()
 
       }).then((res)=> {
+        console.log(res)
         AuthService.login(res.token)
         setLoginSelected(true);
         setCurrentComponent("about")
@@ -42,8 +43,6 @@ function Signup(props) {
 }
   
   
-    
-
   return (
     <Form className="col-6 mx-auto neu d-grid gap-3" id="login-form" onSubmit={signupSubmit}>
       <h2>Signup</h2>
