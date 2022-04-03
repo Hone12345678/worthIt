@@ -45,7 +45,7 @@ function App() {
           <>
         {currentComponent === "gig" && <Gig setCurrentComponent={setCurrentComponent} currentComponent={currentComponent}/>}
         {currentComponent === "about" && <About />}
-        {currentComponent === "profile" && <Profile setCurrentComponent={setCurrentComponent}/>}
+        {currentComponent === "profile" && <Profile setCurrentComponent={setCurrentComponent} currentComponent={currentComponent}/>}
         </>
         )}
       </div>
