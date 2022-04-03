@@ -3,27 +3,37 @@
 
 import { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import AuthService from "../../utils/auth";
 
 function Profile(props) {
+
+  const {
+    setCurrentComponent,
+  } = props;
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
 
+  
+  const userId= AuthService.getProfile().id;
+  console.log("profile", userId);
+ 
   function buttonHandler(e) {
     e.preventDefault();
+    setCurrentComponent("profile")
   }
 
   useEffect(() => {
     // const userId = need to create a function that will return the userId
   
-    fetch("/api/users/")
+    fetch(`/api/users/${userId}`)
       .then(res => res.json())
       .then(
         (result) => {
           setIsLoaded(true);
           setItems(result);
-          console.log(items)
+          console.log(result)
         },
         (error) => {
           setIsLoaded(true);

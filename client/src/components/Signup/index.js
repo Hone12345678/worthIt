@@ -17,6 +17,7 @@ function Signup(props) {
     const password = document.querySelector('#password').value.trim();
     const desiredHP = document.querySelector('#desiredHP').value.trim();
 
+
     if (username && email && password && desiredHP) {
       fetch('/api/users/', {
         method: 'post', 
