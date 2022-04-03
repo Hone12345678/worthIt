@@ -2,11 +2,12 @@
 // the header displays "worth it" to the user which allows them to navigate to the main page
 
 import React from "react";
+import AuthService from "../../utils/auth"
 
 
 function Header(props) {
   const {
-    setCurrentComponent,
+    setCurrentComponent, loginSelected
   } = props; 
 
 
@@ -56,10 +57,24 @@ function Header(props) {
               Gig
             </a>
           </li>
+          {loginSelected && <li className="px-3">
+            <a
+              data-testid="logout"
+              onClick={() => AuthService.logout()}
+              href="#login"
+              className=""
+            >
+              logout
+            </a>
+          </li>}
+          
         </ul>
       </nav>
     </header>
   );
 }
+
+// {loginSelected && <button onClick={AuthService.logout()}>logout</button>}
+
 
 export default Header;
