@@ -9,9 +9,11 @@ const gigsSchema = new Schema({
     type: String,
     allowNull: false,
     required: true,
-    trim: true
+    trim: true,
+    unique: true
   }
-})
+}
+)
 
 // car
 const carSchema = new Schema({

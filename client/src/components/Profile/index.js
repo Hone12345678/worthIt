@@ -13,6 +13,7 @@ function Profile(props) {
   const [items, setItems] = useState([]);
 
   const gigs = [
+
     { name: "Select a Gig to add or remove" },
     { name: "GrubHub" },
     { name: "doorDash" },
@@ -23,6 +24,7 @@ function Profile(props) {
 
   const removeHandler = async function (e) {
     const click = e.target.id;
+
     e.preventDefault();
     console.log(items.car);
     // if (click === 'gig') {
@@ -32,37 +34,50 @@ function Profile(props) {
     // }
   };
 
-  const buttonHandler = (e) => {
+  const buttonHandler = async (e) => {
     e.preventDefault();
-    const speed = document.querySelector("#speed").value.trim();
-    const pay = document.querySelector("#pay").value.trim();
-    const gasPrice = document.querySelector("#gasPrice").value.trim();
-    const gig = document.querySelector("#gig").value.trim();
-    const name = document.querySelector("#name").value.trim();
-    const mpg = document.querySelector("#mpg").value.trim();
-
-    fetch(`/api/users/${userId}`, {
-      method: "PUT",
-      body: JSON.stringify({
-        speed,
-        pay,
-        gasPrice,
-        gig,
-        name,
-        mpg,
-      }),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((res) => {
-        return res.json();
+    const speed = document.querySelector('#speed').value.trim();
+    const pay = document.querySelector('#pay').value.trim();
+    const gasPrice = document.querySelector('#gasPrice').value.trim();
+    const gig = document.querySelector('#gig').value.trim();
+    const carName = document.querySelector('#carName').value.trim();
+    const car = document.querySelector('#car').value.trim();
+    const mpg = document.querySelector('#mpg').value.trim();
+    try {
+      fetch(`/api/users/${userId}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          speed: speed,
+          pay: pay,
+          gasPrice: gasPrice,
+        }),
+        headers: { 'Content-Type': 'application/json' }
       })
-      // .then((res)=> {
-      // })
-      .catch((err) => {
-        alert(err.message);
-      });
-    setCurrentComponent("gig");
-  };
+      if (gig !== "Select a Gig to Add or Remove") {
+        fetch(`/api/users/${userId}/gig/`, {
+          method: 'PUT',
+          body: JSON.stringify({
+            name: gig,
+          }),
+          headers: { 'Content-Type': 'application/json' }
+        })
+      }
+      if ( car.length >= 1 && mpg.length ) {
+      fetch(`/api/users/${userId}/car/`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          car: car,
+          mpg: mpg
+        }),
+        headers: { 'Content-Type': 'application/json' }
+      })
+      }
+    } catch (error) {
+      return (error)
+    }
+      return setCurrentComponent('profile')
+    }
+
 
   useEffect(() => {
     // const userId = need to create a function that will return the userId
