@@ -73,6 +73,7 @@ const userController = {
 	
 				newUser.save(function (err) {
 					if (err) {
+						console.log(err)
 						return res.status(400).json({ success: false, msg: "Username already exists." });
 					}
 					var token = genToken(newUser.toJSON());
