@@ -102,7 +102,8 @@ const userController = {
 				{
 					speed: body.speed,
 					pay: body.pay,
-					gasPrice: body.gasPrice
+					gasPrice: body.gasPrice,
+					gigs: body.gigs
 				},
 				{new: true}
 				)
@@ -117,7 +118,7 @@ const userController = {
 		try {
 			const userData = await User.findOneAndUpdate(
 				{_id: params.userId},
-				{ $push: { car: body } },
+				{ $addToSet: { car: body } },
 				{new: true}
 				)
 				res.json(userData)
@@ -131,8 +132,8 @@ const userController = {
 		try {
 			const userData = await User.findOneAndUpdate(
 				{_id: params.userId},
-				{$push: { gigs: body } },
-				{new: true}
+				{$addToSet: {gigs: body} },
+				{new: true, runValidators: true}
 			)
 			res.json(userData)
 		} catch (error) {
