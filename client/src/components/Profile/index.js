@@ -19,10 +19,28 @@ function Profile(props) {
   const userId= AuthService.getProfile().id;
   console.log("profile", userId);
  
-  function buttonHandler(e) {
+  const buttonHandler = (e) => {
     e.preventDefault();
-    setCurrentComponent("profile")
-  }
+    const speed = document.querySelector('#speed').value.trim();
+    const pay = document.querySelector('#pay').value.trim();
+    
+    fetch(`/api/users/${userId}`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        speed,
+        pay
+      }),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then((res)=> {return res.json()})
+      .then((res)=> {
+        console.log("put function", res)
+      })
+      .catch(err => {
+        alert(err.message)
+      })
+      setCurrentComponent('gig')
+    }
 
   useEffect(() => {
     // const userId = need to create a function that will return the userId
@@ -50,13 +68,13 @@ function Profile(props) {
         <p>Email: {items.email}</p>
         <Form.Group className="">
           <Form.Label bsPrefix="neu-label" htmlFor="pay">Desired Pay Rate: </Form.Label>
-          <Form.Control bsPrefix="neu-input" type="text" name="pay" defaultValue={items.pay} />
+          <Form.Control bsPrefix="neu-input" id="pay" type="text" name="pay" defaultValue={items.pay} />
         </Form.Group>
         <Form.Group>
           <Form.Label bsPrefix="neu-label" htmlFor="Speed">Average Speed: </Form.Label>
-          <Form.Control bsPrefix="neu-input" type="Speed" name="Speed" defaultValue={items.speed} />
+          <Form.Control bsPrefix="neu-input" id="speed" type="Speed" name="Speed" defaultValue={items.speed} />
         </Form.Group>
-        <Button className='neu-button' onClick={buttonHandler}>Get Started!</Button>
+        <Button className='neu-button' onClick={buttonHandler}>Get It!</Button>
       </section>
     </Form>
   );
