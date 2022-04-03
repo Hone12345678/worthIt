@@ -33,34 +33,36 @@ function Profile(props) {
     // }
   }
 
-  const buttonHandler = (e) => {
+  const buttonHandler = async (e) => {
     e.preventDefault();
     const speed = document.querySelector('#speed').value.trim();
     const pay = document.querySelector('#pay').value.trim();
     const gasPrice = document.querySelector('#gasPrice').value.trim();
     const gig = document.querySelector('#gig').value.trim();
-    const name = document.querySelector('#name').value.trim();
+    const carName = document.querySelector('#carName').value.trim();
+    const car = document.querySelector('#car').value.trim();
     const mpg = document.querySelector('#mpg').value.trim();
-    
-    fetch(`/api/users/${userId}`, {
-      method: 'PUT',
-      body: JSON.stringify({
-        speed,
-        pay,
-        gasPrice,
-        gig,
-        name,
-        mpg
-      }),
-      headers: { 'Content-Type': 'application/json' }
-    })
-    .then((res)=> {return res.json()})
-      // .then((res)=> {
-      // })
-      .catch(err => {
-        alert(err.message)
+    try {
+      fetch(`/api/users/${userId}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          speed: speed,
+          pay: pay,
+          gasPrice: gasPrice,
+        }),
+        headers: { 'Content-Type': 'application/json' }
       })
-      setCurrentComponent('gig')
+      fetch(`/api/users/${userId}/gig/`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          gigs: gig,
+        }),
+        headers: { 'Content-Type': 'application/json' }
+      })
+    } catch (error) {
+      return (error)
+    }
+      return setCurrentComponent('profile')
     }
 
   useEffect(() => {
@@ -102,14 +104,14 @@ function Profile(props) {
           <Form.Label bsPrefix="neu-label" htmlFor="gig"><h5>Gig:</h5> </Form.Label>
           <select id="gig" name="gig" > Select a Gig 
             {gigs.map((options) => (
-              <option value={options.name}>{options.name}</option >
+              <option key={options.name} value={options.name}>{options.name}</option >
             ))}
             </select>
           <p>Clicking the remove button below will remove the gig if it has been added to your profile. Otherwise, clicking "Get It" below will add the selected gig to your profile.</p>
           <Button id="removeGig" onClick={removeHandler}>Remove Selected Gig</Button>
         </Form.Group>
         <Form.Group>
-          <Form.Label bsPrefix="neu-label" htmlFor="gig"><h5>Car:</h5> </Form.Label>
+          <Form.Label bsPrefix="neu-label" htmlFor="car"><h5>Car:</h5> </Form.Label>
           <select id="car" name="car" > Select a Car 
 
               {/* this mapping stuff isn't working. */}
@@ -122,8 +124,8 @@ function Profile(props) {
           <Button id="removeCar" onClick={removeHandler}>Remove Selected car</Button>
         </Form.Group>
         <Form.Group>
-          <Form.Label bsPrefix="neu-label" htmlFor="car"><h5>What Car are you using? </h5></Form.Label>
-          <Form.Control bsPrefix="neu-input" id="name" type="text" name="name" />
+          <Form.Label bsPrefix="neu-label" htmlFor="addCar"><h5>Add a Car </h5></Form.Label>
+          <Form.Control bsPrefix="neu-input" id="carName" type="text" name="carName" />
           <Form.Control bsPrefix="neu-input" id="mpg" type="number" name="mpg" />
         </Form.Group>
         <Button className='neu-button' onClick={buttonHandler}>Get It!</Button>
