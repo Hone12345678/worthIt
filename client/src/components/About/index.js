@@ -1,3 +1,4 @@
+// about componant provides detailed description of what this app is and a breif explination of how to use it
 function About() {
   return (
     <section className='neu col-6 mx-auto neu d-grid gap-3'>

@@ -1,5 +1,8 @@
+// user controller
+
 const { User } = require("../models")
 
+// user login
 const userController = {
 	loginUser: async function (req, res, next) {
 		try {
@@ -36,6 +39,7 @@ const userController = {
 		}
 	},
 
+	// get all users
 	getUsers: async function (req, res) {
 		try {
 			const userData = await User.find()
@@ -45,6 +49,7 @@ const userController = {
 		}
 	},
 
+	// delete individual user by id
 	removeUser: async function ({params}, res) {
 		console.log(params);
 		try {
@@ -55,6 +60,7 @@ const userController = {
 		}
 	},
 
+	// create a new user
 	createUser: async function (req, res, next) {
 		try {
 			if (!req.body.username || !req.body.password) {
@@ -80,6 +86,7 @@ const userController = {
 		}
 	},
 
+	// get individual user by id
 	getUser: async function ({params}, res) {
 		try {
 			const userData = await User.findById(params.userId)
@@ -89,6 +96,7 @@ const userController = {
 		}
 	},
 
+	// make updates to existing user
 	editUser: async function ( {params, body}, res) {
 		try {
 			const userData = await User.findByIdAndUpdate(
@@ -106,6 +114,7 @@ const userController = {
 		}
 	},
 
+	// update the number of vehicles associated with the user
 	addCar: async function ({params, body}, res) {
 		try {
 			const userData = await User.findOneAndUpdate(
@@ -119,6 +128,7 @@ const userController = {
 		}
 	},
 
+	// add new "Gig" asocaited with the user
 	addGig: async function ({params, body}, res) {
 		try {
 			const userData = await User.findOneAndUpdate(
@@ -132,6 +142,7 @@ const userController = {
 		}
 	},
 
+	// remove "Gig" asocaited with the user
 	removeGig: async function ({params}, res) {
 		console.log(params);
 		try {
@@ -146,6 +157,7 @@ const userController = {
 		}
 	},
 
+	// remove car asocaited with the user
 	removeCar: async function ({params}, res) {
 		console.log(params);
 		try {

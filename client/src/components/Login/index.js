@@ -1,3 +1,5 @@
+// allows the user to login to an account they have already created
+
 import { Form, Button } from "react-bootstrap";
 import React from 'react';
 import AuthService from "../../utils/auth";

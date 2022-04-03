@@ -1,4 +1,5 @@
-import React from 'react';
+// adding a simple way for users to reach out to us via email
+//current setup uses outlook but with further updates we will implement a more flexible system
 
 
 function Footer() {

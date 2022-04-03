@@ -1,3 +1,5 @@
+// allows a new user to create a new account and input there account information and basic settings
+
 import { Form, Button } from "react-bootstrap";
 import React from 'react';
 import AuthService from "../../utils/auth";

@@ -1,3 +1,6 @@
+// allows user to view and make changes to there current account settings 
+// updating desired pay rate and average driving speed
+
 import { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
