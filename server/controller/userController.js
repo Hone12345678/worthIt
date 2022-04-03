@@ -132,8 +132,8 @@ const userController = {
 		try {
 			const userData = await User.findOneAndUpdate(
 				{_id: params.userId},
-				{$addToSet: { gigs: body } },
-				{new: true}
+				{$addToSet: {gigs: body} },
+				{new: true, runValidators: true}
 			)
 			res.json(userData)
 		} catch (error) {

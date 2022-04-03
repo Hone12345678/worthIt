@@ -17,7 +17,7 @@ function Profile(props) {
   const [items, setItems] = useState([]);
 
   const gigs = [
-    {name: 'Select a Gig to add or remove'}, {name: "GrubHub"}, {name: "doorDash"}, {name: "UberEats"}
+    {name: 'Select a Gig to Add or Remove'}, {name: "GrubHub"}, {name: "DoorDash"}, {name: "UberEats"}
   ]
   
   const userId= AuthService.getProfile().id;
@@ -52,13 +52,25 @@ function Profile(props) {
         }),
         headers: { 'Content-Type': 'application/json' }
       })
-      fetch(`/api/users/${userId}/gig/`, {
+      if (gig !== "Select a Gig to Add or Remove") {
+        fetch(`/api/users/${userId}/gig/`, {
+          method: 'PUT',
+          body: JSON.stringify({
+            name: gig,
+          }),
+          headers: { 'Content-Type': 'application/json' }
+        })
+      }
+      if ( car.length >= 1 && mpg.length ) {
+      fetch(`/api/users/${userId}/car/`, {
         method: 'PUT',
         body: JSON.stringify({
-          gigs: gig,
+          car: car,
+          mpg: mpg
         }),
         headers: { 'Content-Type': 'application/json' }
       })
+      }
     } catch (error) {
       return (error)
     }
