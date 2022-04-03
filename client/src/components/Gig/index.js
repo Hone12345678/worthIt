@@ -16,19 +16,16 @@ function GigForm() {
   // fuel calculation based on user input distance and vehicle mpg
   function calculateFuel() {
     fuelOutput(distance / mpg)
-    console.log({fuel});
    };
 
    // hourly pay calculation base off of user input travel time and compensation for gig
   function calculateHourly() {
     hourlyOutput(60/time * compensation)
-    console.log({hourly});
   };
 
   // total compensation of gig calculated by subtracting total compensation by fuel costs associated with that gig
   function calculateTotal() {
     totalOutput(compensation - distance/mpg * gasPrice)
-    console.log({total});
   }
 
   return (

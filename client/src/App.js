@@ -26,13 +26,13 @@ function App() {
   console.log(loginSelected);
 
   return (
-    <div className='bg-background hfull'>
+    <div className='bg-background h-full'>
       <Header className="text-light"
         setCurrentComponent={setCurrentComponent}
         currentComponent={currentComponent}
       ></Header>
       
-      <div className='justify-content-center h-100'>
+      <div className='justify-content-center h-100 mt-20'>
       {!loginSelected ? (
         <>
         {currentComponent === "login" ? 

@@ -29,7 +29,7 @@ function Header(props) {
               data-testid="about"
               href="#about"
               onClick={() => setCurrentComponent("about")}
-              className=""
+              className="hover:font-bold"
             >
               About
             </a>
@@ -40,7 +40,7 @@ function Header(props) {
               data-testid="profile"
               href="#profile"
               onClick={() => setCurrentComponent("profile")}
-              className=""
+              className="hover:font-bold"
             >
               Profile
             </a>
@@ -51,7 +51,7 @@ function Header(props) {
               data-testid="gig"
               href="#gig"
               onClick={() => setCurrentComponent("gig")}
-              className=""
+              className="hover:font-bold"
             >
               Gig
             </a>

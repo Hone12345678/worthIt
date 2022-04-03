@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --background: #ecf0f3;
   --bottom-shadow: #cbced1;
@@ -168,7 +172,4 @@ body {
   height: 100%;
 }
 
-.hfull {
-  height: 100%;
-}
 
