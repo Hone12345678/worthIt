@@ -16,19 +16,33 @@ function Header(props) {
     <header className="neu-header container mw-100 px-4">
       <nav className="d-flex flex-row gx-5 align-items-center m-0">
           <h1 className="col m-0">
-            <a
+          {!loginSelected ? (
+        <>
+        <a
               data-testid="link"
-              href="/login"
-            >
+              href="/"
+                onClick={() => setCurrentComponent("login")}
+                >
               Worth It
             </a>
+        </>
+        ) : (
+          <>
+          <a
+              data-testid="link"
+              href="/"
+                onClick={() => setCurrentComponent("profile")}
+                >
+              Worth It
+            </a>
+          </>)}
           </h1>
         <ul className="d-flex flex-row align-items-center m-0">
             {/* allows user to navigate to the about page by clicking "About" */}
           <li className="px-3">
             <a
               data-testid="about"
-              href="#about"
+              href="/"
               onClick={() => setCurrentComponent("about")}
               className="hover:font-bold"
             >
@@ -39,7 +53,7 @@ function Header(props) {
           <li className="px-3">
             <a
               data-testid="profile"
-              href="#profile"
+              href="/"
               onClick={() => setCurrentComponent("profile")}
               className="hover:font-bold"
             >
@@ -50,7 +64,7 @@ function Header(props) {
           <li className="px-3">
             <a
               data-testid="gig"
-              href="#gig"
+              href="/"
               onClick={() => setCurrentComponent("gig")}
               className="hover:font-bold"
             >
@@ -61,7 +75,7 @@ function Header(props) {
             <a
               data-testid="logout"
               onClick={() => AuthService.logout()}
-              href="#login"
+              href="/"
               className=""
             >
               logout
