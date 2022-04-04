@@ -14,9 +14,9 @@ function Profile(props) {
 
   const gigs = [
 
-    { name: "Select a Gig to add or remove" },
+    { name: "Select a Gig to Add or Remove" },
     { name: "GrubHub" },
-    { name: "doorDash" },
+    { name: "DoorDash" },
     { name: "UberEats" },
   ];
 
@@ -26,7 +26,7 @@ function Profile(props) {
     const click = e.target.id;
 
     e.preventDefault();
-    console.log(items.car);
+    console.log(items);
     // if (click === 'gig') {
     //   await fetch(`/api/users/${userId}`, {
     //     method:
@@ -40,8 +40,8 @@ function Profile(props) {
     const pay = document.querySelector('#pay').value.trim();
     const gasPrice = document.querySelector('#gasPrice').value.trim();
     const gig = document.querySelector('#gig').value.trim();
-    const carName = document.querySelector('#carName').value.trim();
-    const car = document.querySelector('#car').value.trim();
+    // const carName = document.querySelector('#carName').value.trim();
+    const car = document.querySelector('#name').value.trim();
     const mpg = document.querySelector('#mpg').value.trim();
     try {
       fetch(`/api/users/${userId}`, {
@@ -62,7 +62,7 @@ function Profile(props) {
           headers: { 'Content-Type': 'application/json' }
         })
       }
-      if ( car.length >= 1 && mpg.length ) {
+      if ( car.length >= 1 && mpg.length >= 1) {
       fetch(`/api/users/${userId}/car/`, {
         method: 'PUT',
         body: JSON.stringify({
@@ -75,26 +75,26 @@ function Profile(props) {
     } catch (error) {
       return (error)
     }
-      return setCurrentComponent('profile')
+      return setCurrentComponent('gig')
     }
 
+    useEffect(() => {
+      // const userId = need to create a function that will return the userId
+  
+      fetch(`/api/users/${userId}`)
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            setIsLoaded(true);
+            setItems(result);
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        );
+    }, []);
 
-  useEffect(() => {
-    // const userId = need to create a function that will return the userId
-
-    fetch(`/api/users/${userId}`)
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setItems(result);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
-  }, []);
 
   return (
     <Form className="col-6 mx-auto neu d-grid gap-3" id="login-form">
@@ -112,7 +112,7 @@ function Profile(props) {
             type="text"
             name="pay"
             defaultValue={items.pay}
-          />
+            />
         </Form.Group>
         <Form.Group>
           <Form.Label bsPrefix="neu-label" htmlFor="speed">
@@ -124,7 +124,7 @@ function Profile(props) {
             type="number"
             name="Speed"
             defaultValue={items.speed}
-          />
+            />
         </Form.Group>
         <Form.Group>
           <Form.Label bsPrefix="neu-label" htmlFor="gasPrice">
@@ -136,7 +136,7 @@ function Profile(props) {
             type="number"
             name="gasPrice"
             defaultValue={items.gasPrice}
-          />
+            />
         </Form.Group>
         <Form.Group>
           <Form.Label bsPrefix="neu-label" htmlFor="gig">
@@ -185,19 +185,21 @@ function Profile(props) {
         </Form.Group>
         <Form.Group>
           <Form.Label bsPrefix="neu-label" htmlFor="car">
-            <h5>What Car are you using? </h5>
+            <h5>Add a Car </h5>
           </Form.Label>
           <Form.Control
             bsPrefix="neu-input"
             id="name"
             type="text"
             name="name"
+            placeholder="type of car"
           />
           <Form.Control
             bsPrefix="neu-input"
             id="mpg"
             type="number"
             name="mpg"
+            placeholder="miles per gallon (mpg)"
           />
         </Form.Group>
         <Button className="neu-button" onClick={buttonHandler}>
