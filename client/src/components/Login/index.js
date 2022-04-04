@@ -10,13 +10,6 @@ function Login(props) {
     setLoginSelected
   } = props; 
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // needs code to send the information from the inputs to authenticate and sign in
-    props.changePage('profile')
-  };
-
-
   const loginSubmit = (e) => {
     e.preventDefault();
     const username = document.querySelector('#username').value.trim();

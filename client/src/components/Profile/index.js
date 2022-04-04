@@ -97,12 +97,12 @@ function Profile(props) {
 
 
   return (
-    <Form className="col-sm-11 col-lg-6 mx-auto neu d-grid gap-3" id="login-form">
-      <h2>Profile</h2>
-      <section>
-        <h5>Username:</h5> {items.username}
-        <h5>Email:</h5> {items.email}
-        <Form.Group className="">
+    <Form className="col-11 mx-auto neu d-flex flex-wrap gap-3" id="login-form">
+      <h2 className="col-12">Profile</h2>
+      <section className="row flex-wrap">
+        <h5 className="col-5">Username:</h5> {items.username}
+        <h5 className="col-5">Email:</h5> {items.email}
+        <Form.Group className="col-3">
           <Form.Label bsPrefix="neu-label" htmlFor="pay">
             <h5>Desired Pay Rate:</h5>{" "}
           </Form.Label>
@@ -114,7 +114,7 @@ function Profile(props) {
             defaultValue={items.pay}
             />
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="col-3">
           <Form.Label bsPrefix="neu-label" htmlFor="speed">
             <h5>Average Speed:</h5>
           </Form.Label>
@@ -126,7 +126,7 @@ function Profile(props) {
             defaultValue={items.speed}
             />
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="col-3">
           <Form.Label bsPrefix="neu-label" htmlFor="gasPrice">
             <h5>Gas Price:</h5>{" "}
           </Form.Label>
@@ -138,7 +138,7 @@ function Profile(props) {
             defaultValue={items.gasPrice}
             />
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="col-5">
           <Form.Label bsPrefix="neu-label" htmlFor="gig">
             <h5>Gig:</h5>{" "}
           </Form.Label>
@@ -159,7 +159,7 @@ function Profile(props) {
             Remove Selected Gig
           </Button>
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="col-5">
           <Form.Label bsPrefix="neu-label" htmlFor="gig">
             <h5>Car:</h5>{" "}
           </Form.Label>
@@ -183,27 +183,27 @@ function Profile(props) {
             Remove Selected car
           </Button>
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="col-12 row flex-wrap">
           <Form.Label bsPrefix="neu-label" htmlFor="car">
             <h5>Add a Car </h5>
           </Form.Label>
           <Form.Control
-            bsPrefix="neu-input"
+            bsPrefix="neu-input col-5"
             id="name"
             type="text"
             name="name"
             placeholder="type of car"
           />
           <Form.Control
-            bsPrefix="neu-input"
+            bsPrefix="neu-input col-5"
             id="mpg"
             type="number"
             name="mpg"
             placeholder="miles per gallon (mpg)"
           />
         </Form.Group>
-        <Button className="neu-button" onClick={buttonHandler}>
-          Get It!
+        <Button className="neu-button col-3" onClick={buttonHandler}>
+          Start Gig!
         </Button>
       </section>
     </Form>
