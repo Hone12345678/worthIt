@@ -6,7 +6,12 @@ import { Form, Button } from "react-bootstrap";
 import AuthService from "../../utils/auth";
 
 function Profile(props) {
-  const { setCurrentComponent } = props;
+
+  const {
+    setCurrentComponent,
+    globalState,
+    setGlobalState
+  } = props;
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -36,22 +41,22 @@ function Profile(props) {
 
   const buttonHandler = async (e) => {
     e.preventDefault();
-    const speed = document.querySelector('#speed').value.trim();
+    // const gasPrice = document.querySelector('#gasPrice').value.trim();
     const pay = document.querySelector('#pay').value.trim();
-    const gasPrice = document.querySelector('#gasPrice').value.trim();
-    const gig = document.querySelector('#gig').value.trim();
-    // const carName = document.querySelector('#carName').value.trim();
-    const car = document.querySelector('#name').value.trim();
-    const mpg = document.querySelector('#mpg').value.trim();
-    try {
-      fetch(`/api/users/${userId}`, {
-        method: 'PUT',
-        body: JSON.stringify({
-          speed: speed,
-          pay: pay,
-          gasPrice: gasPrice,
-        }),
-        headers: { 'Content-Type': 'application/json' }
+    
+    fetch(`/api/users/${userId}`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        gasPrice: globalState.gasPrice,
+        pay
+      }),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then((res)=> {return res.json()})
+      // .then((res)=> {
+      // })
+      .catch(err => {
+        alert(err.message)
       })
       if (gig !== "Select a Gig to Add or Remove") {
         fetch(`/api/users/${userId}/gig/`, {
@@ -95,6 +100,34 @@ function Profile(props) {
         );
     }, []);
 
+
+  function updateGasPrice(e) {
+    setGlobalState({
+      ...globalState,
+      gasPrice: e.target.value
+    })
+  }
+
+  function updateMpg(e) {
+    setGlobalState({
+      ...globalState,
+      mpg: e.target.value
+    })
+  }
+
+  function updateSpeed(e) {
+    setGlobalState({
+      ...globalState,
+      avgSpeed: e.target.value
+    })
+  }
+
+  function updatePickup(e) {
+    setGlobalState({
+      ...globalState,
+      avgPickup: e.target.value
+    })
+  }
 
   return (
     <Form className="col-11 neu mx-auto d-flex flex-wrap" id="login-form">
@@ -183,24 +216,21 @@ function Profile(props) {
             Remove Selected car
           </Button>
         </Form.Group>
-        <Form.Group className="col-12 row flex-wrap">
-          <Form.Label bsPrefix="neu-label" htmlFor="car">
-            <h5>Add a Car </h5>
-          </Form.Label>
-          <Form.Control
-            bsPrefix="neu-input col-6"
-            id="name"
-            type="text"
-            name="name"
-            placeholder="type of car"
-          />
-          <Form.Control
-            bsPrefix="neu-input col-6"
-            id="mpg"
-            type="number"
-            name="mpg"
-            placeholder="miles per gallon (mpg)"
-          />
+        <Form.Group>
+          <Form.Label bsPrefix="neu-label" htmlFor="gasPrice">Gas Price: </Form.Label>
+          <Form.Control bsPrefix="neu-input" id="gasPrice" type="gasPrice" name="gasPrice" value={globalState.gasPrice} onChange={updateGasPrice} />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label bsPrefix="neu-label" htmlFor="mpg">Miles per Gallon: </Form.Label>
+          <Form.Control bsPrefix="neu-input" id="mpg" type="mpg" name="mpg" value={globalState.mpg} onChange={updateMpg} />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label bsPrefix="neu-label" htmlFor="avgSpeed">Average Speed: </Form.Label>
+          <Form.Control bsPrefix="neu-input" id="avgSpeed" type="avgSpeed" name="avgSpeed" value={globalState.avgSpeed} onChange={updateSpeed} />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label bsPrefix="neu-label" htmlFor="avgPickup">Average Store Pickup: </Form.Label>
+          <Form.Control bsPrefix="neu-input" id="avgPickup" type="avgPickup" name="avgPickup" value={globalState.avgPickup} onChange={updatePickup} />
         </Form.Group>
         <Button className="neu-button col-4" onClick={buttonHandler}>
           Start Gig!
