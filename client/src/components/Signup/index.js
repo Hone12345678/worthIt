@@ -15,17 +15,15 @@ function Signup(props) {
     const username = document.querySelector('#username').value.trim();
     const email = document.querySelector('#email').value.trim();
     const password = document.querySelector('#password').value.trim();
-    const desiredHP = document.querySelector('#desiredHP').value.trim();
 
 
-    if (username && email && password && desiredHP) {
+    if (username && email && password) {
       fetch('/api/users/', {
         method: 'post', 
         body: JSON.stringify({
           username,
           email,
-          password,
-          desiredHP
+          password
         }),
         headers: { 'Content-Type': 'application/json' }
       })
@@ -58,10 +56,6 @@ function Signup(props) {
       <Form.Group>
         <Form.Label htmlFor="password">Password: </Form.Label>
         <Form.Control bsPrefix="neu-input" id = "password" type="password" defaultValue={''} />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label htmlFor="pay">Desired Hourly Pay: </Form.Label>
-        <Form.Control bsPrefix="neu-input" id = "desiredHP" type="number" defaultValue={''} />
       </Form.Group>
       <Button bsPrefix="neu-button" variant="primary" className="neu-button" type="submit">Submit</Button>
       <span>Already have an account? <u><a href="#login" onClick={() => setCurrentComponent("login")}>Login</a></u></span>

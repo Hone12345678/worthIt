@@ -46,7 +46,7 @@ router.route("/:userId/car/:carId")
 router.route("/:userId/gig")
 	.put(addGig)
 	
-	router.route("/:userId/gig/:gigId")
+	router.route("/:userId/gig/remove")
 	.put(removeGig)
 
 module.exports = router

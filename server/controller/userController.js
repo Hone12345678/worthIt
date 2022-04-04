@@ -131,10 +131,18 @@ const userController = {
 	// add new "Gig" asocaited with the user
 	addGig: async function ({params, body}, res) {
 		try {
+			const cleanData = await User.findOneAndUpdate(
+				{_id: params.userId},
+				{
+					$pull: {gigs: body },
+				}
+			)
 			const userData = await User.findOneAndUpdate(
 				{_id: params.userId},
-				{$addToSet: {gigs: body} },
-				{new: true, runValidators: true}
+				{
+					$addToSet: {gigs: body}
+				},
+				{ new: true}
 			)
 			res.json(userData)
 		} catch (error) {
@@ -147,8 +155,9 @@ const userController = {
 		try {
 			const userData = await User.findOneAndUpdate(
 				{_id: params.userId},
-				{$pull: { gigs: { _id: params.gigId} } },
-				{new: true}
+				{
+					$pull: {gigs: body },
+				}
 			)
 			res.json(userData)
 		} catch (error) {

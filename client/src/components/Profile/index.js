@@ -19,7 +19,7 @@ function Profile(props) {
     { name: "DoorDash" },
     { name: "UberEats" },
   ];
-
+  const gig = document.querySelector('#gig').value.trim();
   const userId = AuthService.getProfile().id;
 
   const removeHandler = async function (e) {
@@ -27,11 +27,13 @@ function Profile(props) {
 
     e.preventDefault();
     console.log(items);
-    // if (click === 'gig') {
-    //   await fetch(`/api/users/${userId}`, {
-    //     method:
-    //   })
-    // }
+    fetch(`/api/users/${userId}/gig/remove`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        gigs: {name: gig},
+      }),
+      headers: { 'Content-Type': 'application/json' }
+    })
   };
 
   const buttonHandler = async (e) => {
@@ -39,7 +41,7 @@ function Profile(props) {
     const speed = document.querySelector('#speed').value.trim();
     const pay = document.querySelector('#pay').value.trim();
     const gasPrice = document.querySelector('#gasPrice').value.trim();
-    const gig = document.querySelector('#gig').value.trim();
+    
     // const carName = document.querySelector('#carName').value.trim();
     const car = document.querySelector('#name').value.trim();
     const mpg = document.querySelector('#mpg').value.trim();
@@ -75,7 +77,7 @@ function Profile(props) {
     } catch (error) {
       return (error)
     }
-      return setCurrentComponent('gig')
+      return setCurrentComponent('profile')
     }
 
     useEffect(() => {
