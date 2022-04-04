@@ -97,7 +97,7 @@ function Profile(props) {
 
 
   return (
-    <Form className="col-6 mx-auto neu d-grid gap-3" id="login-form">
+    <Form className="col-sm-11 col-lg-6 mx-auto neu d-grid gap-3" id="login-form">
       <h2>Profile</h2>
       <section>
         <h5>Username:</h5> {items.username}
