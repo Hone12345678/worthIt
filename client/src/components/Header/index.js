@@ -9,7 +9,7 @@ function Header(props) {
   return (
     // the header displays "worth it" to the user which allows them to navigate to the main page
     <header className="neu-header container mw-100 px-4">
-      <nav className="d-flex flex-row row gx-5 align-items-center m-0">
+      <nav className="d-flex flex-row row gx-5 justify-content-between align-items-center m-0">
         <div className="col-sm-12 col-md-3">
           <h1 className="m-0 text-center">
             <a
@@ -20,7 +20,7 @@ function Header(props) {
             </a>
           </h1>
         </div>
-        <ul className="col-sm col-md-9 justify-content-between d-flex flex-row m-0">
+        <ul className="col-sm-12 col-md-6 col-xl-4 justify-content-between d-flex flex-row m-0">
             {/* allows user to navigate to the about page by clicking "About" */}
           <li className="px-3">
             <a
