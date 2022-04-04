@@ -72,7 +72,7 @@ function Profile(props) {
     });
   }
   return (
-    <Form className="col-11 neu mx-auto d-flex flex-wrap text-center" id="login-form">
+    <Form className="col-11 mt-3 neu mx-auto d-flex flex-wrap text-center" id="login-form">
       <h2 className="col-12 text-center">{items.username}'s Profile</h2>
       <section className="row flex-wrap w-100 mx-auto">
         {/* <h5 className="col-6">Username: {items.username}</h5>  */}
@@ -81,6 +81,7 @@ function Profile(props) {
           <Form.Label bsPrefix="neu-label" htmlFor="pay">
             Desired Pay Rate:{" "}
           </Form.Label>
+          <div className="d-inline">
           <Form.Control
             bsPrefix="neu-input"
             id="pay"
@@ -88,6 +89,7 @@ function Profile(props) {
             name="pay"
             defaultValue={items.pay}
           />
+          </div>
         </Form.Group>
         <Form.Group className="col-6">
           <Form.Label bsPrefix="neu-label" htmlFor="gasPrice">
@@ -128,7 +130,7 @@ function Profile(props) {
             onChange={updateSpeed}
           />
         </Form.Group>
-        <Form.Group className="col-6 mx-auto mb-4">
+        <Form.Group className="col-sm-12 col-md-6 mx-auto mb-4">
           <Form.Label bsPrefix="neu-label" htmlFor="avgPickup">
             Average Store Pickup:{" "}
           </Form.Label>

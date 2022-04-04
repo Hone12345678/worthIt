@@ -10,7 +10,7 @@ function Header(props) {
     // the header displays "worth it" to the user which allows them to navigate to the main page
     <header className="neu-header container mw-100 px-4">
       <nav className="d-flex flex-row gx-5 align-items-center m-0">
-          <h1 className="col m-0">
+          <h1 className="m-0">
             <a
               data-testid="link"
               href="/worthIt"
