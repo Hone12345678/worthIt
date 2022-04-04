@@ -11,6 +11,7 @@ function GigForm(props) {
   const [deliveryTime, deliveryOutput] = useState(((parseFloat(distance) / parseFloat(globalState.avgSpeed)) * 60) + parseFloat(globalState.avgPickup));
   const [hourly, hourlyOutput] = useState((compensation - (distance / globalState.mpg) * globalState.gasPrice) / (parseFloat(distance) / parseFloat(globalState.avgSpeed) + (parseFloat(globalState.avgPickup) / 60)));
   const [total, totalOutput] = useState(distance / globalState.mpg - time / compensation);
+  const [order, setOrder] = useState("")
 
 
   // fuel calculation based on user input distance and vehicle mpg
@@ -38,12 +39,17 @@ function GigForm(props) {
     calculateHourly();
     calculateTime();
     calculateTotal();
+    setOrder("order-last")
+  }
+
+  function resetOrder() {
+    setOrder("")
   }
 
   return (
     <div className="col-11 mx-auto text-center">
-      <div className=" col-12 mx-auto d-flex flex-row flex-wrap">
-        <div className="col-12 mx-auto mt-3 neu d-grid gap-3">
+      <div className="col-12 mx-auto d-flex flex-row flex-wrap">
+        <div className={`col-12 mx-auto mt-3 neu d-grid gap-3 ${order}`}>
           <h1 className="col-11 mx-auto">Trip Calculator</h1>
           <h3>Distance</h3>
           <input
@@ -76,6 +82,7 @@ function GigForm(props) {
 
           <h6>Total</h6>
           <p className="neu-input">${total.toFixed(2)}</p>
+          <button className="neu-button col-12" onClick={resetOrder}>Next Trip!</button>
         </div>
       </div>
 
