@@ -97,12 +97,12 @@ function Profile(props) {
 
 
   return (
-    <Form className="col-11 mx-auto neu d-flex flex-wrap gap-3" id="login-form">
-      <h2 className="col-12">Profile</h2>
-      <section className="row flex-wrap">
-        <h5 className="col-5">Username:</h5> {items.username}
-        <h5 className="col-5">Email:</h5> {items.email}
-        <Form.Group className="col-3">
+    <Form className="col-11 neu mx-auto d-flex flex-wrap" id="login-form">
+      <h2 className="col-12 text-center">{items.username}'s Profile</h2>
+      <section className="row flex-wrap w-100">
+        {/* <h5 className="col-6">Username: {items.username}</h5>  */}
+        <h5 className="col-12 text-center">Email: {items.email}</h5>
+        <Form.Group className="col-4 justify-content-between">
           <Form.Label bsPrefix="neu-label" htmlFor="pay">
             <h5>Desired Pay Rate:</h5>{" "}
           </Form.Label>
@@ -114,7 +114,7 @@ function Profile(props) {
             defaultValue={items.pay}
             />
         </Form.Group>
-        <Form.Group className="col-3">
+        <Form.Group className="col-4">
           <Form.Label bsPrefix="neu-label" htmlFor="speed">
             <h5>Average Speed:</h5>
           </Form.Label>
@@ -126,7 +126,7 @@ function Profile(props) {
             defaultValue={items.speed}
             />
         </Form.Group>
-        <Form.Group className="col-3">
+        <Form.Group className="col-4">
           <Form.Label bsPrefix="neu-label" htmlFor="gasPrice">
             <h5>Gas Price:</h5>{" "}
           </Form.Label>
@@ -138,11 +138,11 @@ function Profile(props) {
             defaultValue={items.gasPrice}
             />
         </Form.Group>
-        <Form.Group className="col-5">
+        <Form.Group className="col-6">
           <Form.Label bsPrefix="neu-label" htmlFor="gig">
             <h5>Gig:</h5>{" "}
           </Form.Label>
-          <select id="gig" name="gig">
+          <select className="col-12" id="gig" name="gig">
             {" "}
             Select a Gig
             
@@ -159,11 +159,11 @@ function Profile(props) {
             Remove Selected Gig
           </Button>
         </Form.Group>
-        <Form.Group className="col-5">
+        <Form.Group className="col-6">
           <Form.Label bsPrefix="neu-label" htmlFor="gig">
             <h5>Car:</h5>{" "}
           </Form.Label>
-          <select id="car" name="car">
+          <select className="col-12" id="car" name="car">
             {" "}
             Select a Car
             {/* this mapping stuff isn't working. */}
@@ -188,21 +188,21 @@ function Profile(props) {
             <h5>Add a Car </h5>
           </Form.Label>
           <Form.Control
-            bsPrefix="neu-input col-5"
+            bsPrefix="neu-input col-6"
             id="name"
             type="text"
             name="name"
             placeholder="type of car"
           />
           <Form.Control
-            bsPrefix="neu-input col-5"
+            bsPrefix="neu-input col-6"
             id="mpg"
             type="number"
             name="mpg"
             placeholder="miles per gallon (mpg)"
           />
         </Form.Group>
-        <Button className="neu-button col-3" onClick={buttonHandler}>
+        <Button className="neu-button col-4" onClick={buttonHandler}>
           Start Gig!
         </Button>
       </section>
