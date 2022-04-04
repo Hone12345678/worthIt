@@ -1,6 +1,7 @@
 //Gig Componant 
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+// import AuthService from '../../utils/auth'
 
 function GigForm() {
 
@@ -12,6 +13,36 @@ function GigForm() {
   const [fuel, fuelOutput] = useState(distance / mpg);
   const [hourly, hourlyOutput] = useState(time / compensation);
   const [total, totalOutput] = useState(distance/mpg - time/compensation);
+  
+
+  // const [error, setError] = useState(null);
+  // const [isLoaded, setIsLoaded] = useState(false);
+  // const [items, setItems] = useState([]);
+
+  // const userId = AuthService.getProfile().id;
+
+  
+
+
+  // useEffect(() => {
+  //   // const userId = need to create a function that will return the userId
+
+  //   fetch(`/api/users/${userId}`)
+  //     .then((res) => res.json())
+  //     .then(
+  //       (result) => {
+  //         setIsLoaded(true);
+  //         setItems(result);
+  //       },
+  //       (error) => {
+  //         setIsLoaded(true);
+  //         setError(error);
+  //       }
+  //     );
+  // }, []);
+
+  // const blah = items.username
+ 
 
   // fuel calculation based on user input distance and vehicle mpg
   function calculateFuel() {
@@ -83,7 +114,7 @@ function GigForm() {
     </div>
     </div>
 
-
+    
     </div>
   )
 }
