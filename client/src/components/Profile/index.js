@@ -58,6 +58,7 @@ function Profile(props) {
       .catch(err => {
         alert(err.message)
       })
+      
       if (gig !== "Select a Gig to Add or Remove") {
         fetch(`/api/users/${userId}/gig/`, {
           method: 'PUT',
@@ -77,7 +78,7 @@ function Profile(props) {
         headers: { 'Content-Type': 'application/json' }
       })
       }
-    } catch (error) {
+    } .catch (error) {
       return (error)
     }
       return setCurrentComponent('gig')
