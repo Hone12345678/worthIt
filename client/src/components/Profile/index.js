@@ -99,7 +99,7 @@ function Profile(props) {
   return (
     <Form className="col-11 neu mx-auto d-flex flex-wrap" id="login-form">
       <h2 className="col-12 text-center">{items.username}'s Profile</h2>
-      <section className="row flex-wrap w-100">
+      <section className="row flex-wrap w-100 mx-auto">
         {/* <h5 className="col-6">Username: {items.username}</h5>  */}
         <h5 className="col-12 text-center">Email: {items.email}</h5>
         <Form.Group className="col-4 justify-content-between">
@@ -159,7 +159,7 @@ function Profile(props) {
             Remove Selected Gig
           </Button>
         </Form.Group>
-        <Form.Group className="col-6">
+        <Form.Group className="col-6 align-items-end">
           <Form.Label bsPrefix="neu-label" htmlFor="gig">
             <h5>Car:</h5>{" "}
           </Form.Label>
