@@ -41,11 +41,10 @@ function GigForm(props) {
   }
 
   return (
-    <div className="col-11 mt-3 mx-auto neu text-center">
-      <h1 className="col-11 mx-auto">Trip Calculator</h1>
-
+    <div className="col-11 mx-auto text-center">
       <div className=" col-12 mx-auto d-flex flex-row flex-wrap">
         <div className="col-12 mx-auto mt-3 neu d-grid gap-3">
+          <h1 className="col-11 mx-auto">Trip Calculator</h1>
           <h3>Distance</h3>
           <input
             className="neu-input"
