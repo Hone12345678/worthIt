@@ -72,12 +72,12 @@ function Profile(props) {
     });
   }
   return (
-    <Form className="col-11 neu mx-auto d-flex flex-wrap" id="login-form">
+    <Form className="col-11 neu mx-auto d-flex flex-wrap text-center" id="login-form">
       <h2 className="col-12 text-center">{items.username}'s Profile</h2>
       <section className="row flex-wrap w-100 mx-auto">
         {/* <h5 className="col-6">Username: {items.username}</h5>  */}
         <h5 className="col-12 text-center">Email: {items.email}</h5>
-        <Form.Group className="col-4 justify-content-between">
+        <Form.Group className="col-6">
           <Form.Label bsPrefix="neu-label" htmlFor="pay">
             Desired Pay Rate:{" "}
           </Form.Label>
@@ -89,7 +89,7 @@ function Profile(props) {
             defaultValue={items.pay}
           />
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="col-6">
           <Form.Label bsPrefix="neu-label" htmlFor="gasPrice">
             Gas Price:{" "}
           </Form.Label>
@@ -102,7 +102,7 @@ function Profile(props) {
             onChange={updateGasPrice}
           />
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="col-6">
           <Form.Label bsPrefix="neu-label" htmlFor="mpg">
             Miles per Gallon:{" "}
           </Form.Label>
@@ -115,7 +115,7 @@ function Profile(props) {
             onChange={updateMpg}
           />
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="col-6">
           <Form.Label bsPrefix="neu-label" htmlFor="avgSpeed">
             Average Speed:{" "}
           </Form.Label>
@@ -128,7 +128,7 @@ function Profile(props) {
             onChange={updateSpeed}
           />
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="col-6 mx-auto mb-4">
           <Form.Label bsPrefix="neu-label" htmlFor="avgPickup">
             Average Store Pickup:{" "}
           </Form.Label>
@@ -141,7 +141,7 @@ function Profile(props) {
             onChange={updatePickup}
           />
         </Form.Group>
-        <Button className="neu-button" onClick={buttonHandler}>
+        <Button bsPrefix="neu-button" onClick={buttonHandler}>
           Get It!
         </Button>
       </section>
