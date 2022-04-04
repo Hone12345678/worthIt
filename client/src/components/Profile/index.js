@@ -9,6 +9,8 @@ function Profile(props) {
 
   const {
     setCurrentComponent,
+    globalState,
+    setGlobalState
   } = props;
 
   const [error, setError] = useState(null);
@@ -20,13 +22,13 @@ function Profile(props) {
  
   const buttonHandler = (e) => {
     e.preventDefault();
-    const speed = document.querySelector('#speed').value.trim();
+    // const gasPrice = document.querySelector('#gasPrice').value.trim();
     const pay = document.querySelector('#pay').value.trim();
     
     fetch(`/api/users/${userId}`, {
       method: 'PUT',
       body: JSON.stringify({
-        speed,
+        gasPrice: globalState.gasPrice,
         pay
       }),
       headers: { 'Content-Type': 'application/json' }
@@ -57,6 +59,34 @@ function Profile(props) {
       )
   }, [])
 
+  function updateGasPrice(e) {
+    setGlobalState({
+      ...globalState,
+      gasPrice: e.target.value
+    })
+  }
+
+  function updateMpg(e) {
+    setGlobalState({
+      ...globalState,
+      mpg: e.target.value
+    })
+  }
+
+  function updateSpeed(e) {
+    setGlobalState({
+      ...globalState,
+      avgSpeed: e.target.value
+    })
+  }
+
+  function updatePickup(e) {
+    setGlobalState({
+      ...globalState,
+      avgPickup: e.target.value
+    })
+  }
+
   return (
     <Form className="col-6 mx-auto neu d-grid gap-3" id="login-form">
       <h2>Profile</h2>
@@ -68,8 +98,20 @@ function Profile(props) {
           <Form.Control bsPrefix="neu-input" id="pay" type="text" name="pay" defaultValue={items.pay} />
         </Form.Group>
         <Form.Group>
-          <Form.Label bsPrefix="neu-label" htmlFor="Speed">Average Speed: </Form.Label>
-          <Form.Control bsPrefix="neu-input" id="speed" type="Speed" name="Speed" defaultValue={items.speed} />
+          <Form.Label bsPrefix="neu-label" htmlFor="gasPrice">Gas Price: </Form.Label>
+          <Form.Control bsPrefix="neu-input" id="gasPrice" type="gasPrice" name="gasPrice" value={globalState.gasPrice} onChange={updateGasPrice} />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label bsPrefix="neu-label" htmlFor="mpg">Miles per Gallon: </Form.Label>
+          <Form.Control bsPrefix="neu-input" id="mpg" type="mpg" name="mpg" value={globalState.mpg} onChange={updateMpg} />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label bsPrefix="neu-label" htmlFor="avgSpeed">Average Speed: </Form.Label>
+          <Form.Control bsPrefix="neu-input" id="avgSpeed" type="avgSpeed" name="avgSpeed" value={globalState.avgSpeed} onChange={updateSpeed} />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label bsPrefix="neu-label" htmlFor="avgPickup">Average Store Pickup: </Form.Label>
+          <Form.Control bsPrefix="neu-input" id="avgPickup" type="avgPickup" name="avgPickup" value={globalState.avgPickup} onChange={updatePickup} />
         </Form.Group>
         <Button className='neu-button' onClick={buttonHandler}>Get It!</Button>
       </section>

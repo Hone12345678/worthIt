@@ -1,48 +1,29 @@
-// header componant displays the options of where the user is able to navigate to 
+// header componant displays the options of where the user is able to navigate to
 // the header displays "worth it" to the user which allows them to navigate to the main page
-
 import React from "react";
 import AuthService from "../../utils/auth"
-
-
 function Header(props) {
   const {
     setCurrentComponent, loginSelected
-  } = props; 
-
-
+  } = props;
   return (
     // the header displays "worth it" to the user which allows them to navigate to the main page
     <header className="neu-header container mw-100 px-4">
       <nav className="d-flex flex-row gx-5 align-items-center m-0">
           <h1 className="col m-0">
-          {!loginSelected ? (
-        <>
-        <a
+            <a
               data-testid="link"
-              href="/"
-                onClick={() => setCurrentComponent("login")}
-                >
+              href="/worthIt"
+            >
               Worth It
             </a>
-        </>
-        ) : (
-          <>
-          <a
-              data-testid="link"
-              href="/"
-                onClick={() => setCurrentComponent("profile")}
-                >
-              Worth It
-            </a>
-          </>)}
           </h1>
         <ul className="d-flex flex-row align-items-center m-0">
             {/* allows user to navigate to the about page by clicking "About" */}
           <li className="px-3">
             <a
               data-testid="about"
-              href="/"
+              href="#about"
               onClick={() => setCurrentComponent("about")}
               className="hover:font-bold"
             >
@@ -53,7 +34,7 @@ function Header(props) {
           <li className="px-3">
             <a
               data-testid="profile"
-              href="/"
+              href="#profile"
               onClick={() => setCurrentComponent("profile")}
               className="hover:font-bold"
             >
@@ -64,7 +45,7 @@ function Header(props) {
           <li className="px-3">
             <a
               data-testid="gig"
-              href="/"
+              href="#gig"
               onClick={() => setCurrentComponent("gig")}
               className="hover:font-bold"
             >
@@ -75,20 +56,16 @@ function Header(props) {
             <a
               data-testid="logout"
               onClick={() => AuthService.logout()}
-              href="/"
+              href="#login"
               className=""
             >
               logout
             </a>
           </li>}
-          
         </ul>
       </nav>
     </header>
   );
 }
-
 // {loginSelected && <button onClick={AuthService.logout()}>logout</button>}
-
-
 export default Header;
