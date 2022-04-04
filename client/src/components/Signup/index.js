@@ -64,6 +64,7 @@ function Signup(props) {
         <Form.Control bsPrefix="neu-input" id = "desiredHP" type="number" defaultValue={''} />
       </Form.Group>
       <Button bsPrefix="neu-button" variant="primary" className="neu-button" type="submit">Submit</Button>
+      <span>Aleady have an account? <u><a href="#login" onClick={() => setCurrentComponent("login")}>Login</a></u></span>
     </Form>
   );
 }
