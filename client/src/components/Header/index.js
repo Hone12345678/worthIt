@@ -1,16 +1,11 @@
-// header componant displays the options of where the user is able to navigate to 
+// header componant displays the options of where the user is able to navigate to
 // the header displays "worth it" to the user which allows them to navigate to the main page
-
 import React from "react";
 import AuthService from "../../utils/auth"
-
-
 function Header(props) {
   const {
     setCurrentComponent, loginSelected
-  } = props; 
-
-
+  } = props;
   return (
     // the header displays "worth it" to the user which allows them to navigate to the main page
     <header className="neu-header container mw-100 px-4">
@@ -67,14 +62,10 @@ function Header(props) {
               logout
             </a>
           </li>}
-          
         </ul>
       </nav>
     </header>
   );
 }
-
 // {loginSelected && <button onClick={AuthService.logout()}>logout</button>}
-
-
 export default Header;
