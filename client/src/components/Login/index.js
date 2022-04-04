@@ -10,13 +10,6 @@ function Login(props) {
     setLoginSelected
   } = props; 
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // needs code to send the information from the inputs to authenticate and sign in
-    props.changePage('profile')
-  };
-
-
   const loginSubmit = (e) => {
     e.preventDefault();
     const username = document.querySelector('#username').value.trim();
@@ -49,7 +42,7 @@ function Login(props) {
   };
 
   return (
-    <Form className="col-6 mx-auto neu d-grid gap-3 pb align-middle mh-100 my-" id="login-form" onSubmit={loginSubmit}>
+    <Form className="col-lg-6 col-md-10 mx-auto neu d-grid gap-3 pb align-middle mh-100 my-" id="login-form" onSubmit={loginSubmit}>
         <h2>Login</h2>
         <Form.Group className="">
           <Form.Label bsPrefix="neu-label" htmlFor="username">Username:</Form.Label>

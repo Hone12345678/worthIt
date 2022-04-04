@@ -24,11 +24,6 @@ html {
   height: 100vh;
 }
 
-body {
-  max-height: 100%;
-  height: 100% 
-}
-
 #root {
   height:calc(100vh - 70px)
 }
@@ -70,8 +65,7 @@ header nav ul li a {
   width: auto;
   height: auto;
   border-radius: 50px;
-  padding: 40px;
-  margin: 15px;
+  padding: 1.5em;
   box-sizing: border-box;
   background: var(--background);
   box-shadow: 14px 14px var(--blur) var(--bottom-shadow),
@@ -122,6 +116,7 @@ input::placeholder {
   border-top-right-radius: 10px;
   box-shadow: -14px -14px var(--blur) var(--top-shadow);
   width: 100%;
+  height: 10%;
 }
 
 .neu-footer-btn {
@@ -172,4 +167,8 @@ body {
   height: 100%;
 }
 
+
+@media screen {
+  
+}
 

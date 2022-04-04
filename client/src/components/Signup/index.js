@@ -32,6 +32,7 @@ function Signup(props) {
       .then((res)=> {return res.json()
 
       }).then((res)=> {
+        console.log(res)
         AuthService.login(res.token)
         setLoginSelected(true);
         setCurrentComponent("about")
@@ -42,10 +43,8 @@ function Signup(props) {
 }
   
   
-    
-
   return (
-    <Form className="col-6 mx-auto neu d-grid gap-3" id="login-form" onSubmit={signupSubmit}>
+    <Form className="col-lg-6 col-md-10 mx-auto neu d-grid gap-3" id="login-form" onSubmit={signupSubmit}>
       <h2>Signup</h2>
 
       <Form.Group>
@@ -65,6 +64,7 @@ function Signup(props) {
         <Form.Control bsPrefix="neu-input" id = "desiredHP" type="number" defaultValue={''} />
       </Form.Group>
       <Button bsPrefix="neu-button" variant="primary" className="neu-button" type="submit">Submit</Button>
+      <span>Already have an account? <u><a href="#login" onClick={() => setCurrentComponent("login")}>Login</a></u></span>
     </Form>
   );
 }

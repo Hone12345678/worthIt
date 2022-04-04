@@ -29,9 +29,8 @@ function App() {
   }, [loginSelected]);
 
   return (
-    <div className="bg-background h-full">
-      <Header
-        className="text-light"
+    <div className='bg-background flex flex-col justify-between h-screen'>
+      <Header className="text-light"
         setCurrentComponent={setCurrentComponent}
         currentComponent={currentComponent}
         loginSelected={loginSelected}
@@ -77,7 +76,8 @@ function App() {
         )}
       </div>
 
-      <Footer page={currentComponent} changePage={setCurrentComponent} />
+      <Footer page={currentComponent} changePage={setCurrentComponent} className="h-10" />
+
     </div>
   );
 }

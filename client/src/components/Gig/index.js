@@ -12,6 +12,7 @@ function GigForm(props) {
   const [hourly, hourlyOutput] = useState((compensation - (distance / globalState.mpg) * globalState.gasPrice) / (parseFloat(distance) / parseFloat(globalState.avgSpeed) + (parseFloat(globalState.avgPickup) / 60)));
   const [total, totalOutput] = useState(distance / globalState.mpg - time / compensation);
 
+
   // fuel calculation based on user input distance and vehicle mpg
   function calculateFuel() {
     fuelOutput(distance / globalState.mpg);
@@ -37,7 +38,7 @@ function GigForm(props) {
       <h1 className="col-4 mx-auto h-40 neu">Trip Calculator</h1>
 
       <div className="d-flex flex-row">
-        <div className="col-5 mx-auto neu d-grid gap-3">
+        <div className="col-sm-12 col-lg-5 mx-auto neu d-grid gap-3">
           <h3>Distance</h3>
           <input
             type="number"
@@ -54,7 +55,7 @@ function GigForm(props) {
             onChange={(e) => compInput(e.target.value)}
           />
         </div>
-        <div className="col-5 mx-auto neu d-grid gap-3">
+        <div className="col-sm-12 col-lg-5 mx-auto neu d-grid gap-3">
           <button onClick={calculateFuel}>Fuel Used</button>
           <h2>{fuel.toFixed(2)} gallon(s)</h2>
 
@@ -68,6 +69,7 @@ function GigForm(props) {
           <h2>${total.toFixed(2)}</h2>
         </div>
       </div>
+
     </div>
   );
 }
