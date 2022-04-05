@@ -16,7 +16,6 @@ function App() {
     mpg: 0,
     avgSpeed: 0,
     avgPickup: 0,
-    pay: 0
   });
 
   //
@@ -77,7 +76,7 @@ function App() {
         )}
       </div>
 
-      <Footer page={currentComponent} changePage={setCurrentComponent} className="h-10 bottom" />
+      <Footer page={currentComponent} changePage={setCurrentComponent} className="h-10" />
 
     </div>
   );
