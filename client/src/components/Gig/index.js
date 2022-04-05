@@ -1,7 +1,7 @@
 //Gig Componant
 
 import React, { useState } from "react";
-
+// time, compensation, fuel, hourly, total
 function GigForm(props) {
   const { globalState } = props;
   const [distance, distInput] = useState(0);
@@ -16,21 +16,25 @@ function GigForm(props) {
 
   // fuel calculation based on user input distance and vehicle mpg
   function calculateFuel() {
+    console.log(distance, globalState.mpg);
     fuelOutput(distance / globalState.mpg);
   }
 
   // time calculation based on user profile of average speed and input of distance
   function calculateTime() {
+    console.log(distance, globalState.avgSpeed, globalState.avgPickup);
     deliveryOutput(((parseFloat(distance) / parseFloat(globalState.avgSpeed)) * 60) + parseFloat(globalState.avgPickup));
   }
 
   // hourly pay calculation base off of user input travel time and compensation for gig
   function calculateHourly() {
+    console.log(compensation, distance, globalState.mpg, globalState.gasPrice, globalState.avgSpeed, globalState.avgPickup);
     hourlyOutput((compensation - (distance / globalState.mpg) * globalState.gasPrice) / (parseFloat(distance) / parseFloat(globalState.avgSpeed) + (parseFloat(globalState.avgPickup) / 60)));
   }
 
   // total compensation of gig calculated by subtracting total compensation by fuel costs associated with that gig
   function calculateTotal() {
+    console.log(compensation, distance, globalState.mpg, globalState.gasPrice);
     totalOutput(compensation - (distance / globalState.mpg) * globalState.gasPrice);
   }
 

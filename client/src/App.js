@@ -16,6 +16,7 @@ function App() {
     mpg: 0,
     avgSpeed: 0,
     avgPickup: 0,
+    pay: 0
   });
 
   //

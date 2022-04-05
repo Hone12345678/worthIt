@@ -67,8 +67,7 @@ const userController = {
         var newUser = new User({
           username: req.body.username,
           email: req.body.email,
-					password: req.body.password,
-          desiredHP: req.body.desiredHP
+					password: req.body.password
 				});
 	
 				newUser.save(function (err) {
@@ -104,7 +103,8 @@ const userController = {
 					speed: body.speed,
 					pay: body.pay,
 					gasPrice: body.gasPrice,
-					gigs: body.gigs
+					mpg: body.mpg,
+					pickUpTime: body.pickUpTime
 				},
 				{new: true}
 				)

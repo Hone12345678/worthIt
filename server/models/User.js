@@ -75,6 +75,14 @@ const userSchema = new Schema ({
     type: Number,
     trim: true
   },
+  pickUpTime: {
+    type: Number,
+    trim: true
+  },
+  mpg: {
+    type: Number,
+    trim: true
+  },
   car: [carSchema],
   gigs: [gigsSchema]
 })
