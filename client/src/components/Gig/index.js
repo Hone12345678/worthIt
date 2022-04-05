@@ -11,6 +11,7 @@ function GigForm(props) {
   const [deliveryTime, deliveryOutput] = useState(((parseFloat(distance) / parseFloat(globalState.avgSpeed)) * 60) + parseFloat(globalState.avgPickup));
   const [hourly, hourlyOutput] = useState((compensation - (distance / globalState.mpg) * globalState.gasPrice) / (parseFloat(distance) / parseFloat(globalState.avgSpeed) + (parseFloat(globalState.avgPickup) / 60)));
   const [total, totalOutput] = useState(distance / globalState.mpg - time / compensation);
+  const [order, setOrder] = useState("")
 
 
   // fuel calculation based on user input distance and vehicle mpg
@@ -37,14 +38,26 @@ function GigForm(props) {
     totalOutput(compensation - (distance / globalState.mpg) * globalState.gasPrice);
   }
 
-  return (
-    <div className="col-11 mx-auto neu d-grid gap-3 text-center">
-      <h1 className="col-4 mx-auto h-40 neu">Trip Calculator</h1>
+  function calculateAll() {
+    calculateFuel();
+    calculateHourly();
+    calculateTime();
+    calculateTotal();
+    setOrder("order-last")
+  }
 
-      <div className="d-flex flex-row">
-        <div className="col-sm-12 col-lg-5 mx-auto neu d-grid gap-3">
+  function resetOrder() {
+    setOrder("")
+  }
+
+  return (
+    <div className="col-11 mx-auto text-center">
+      <div className="col-12 mx-auto d-flex flex-row flex-wrap">
+        <div className={`col-12 mx-auto mt-3 neu d-grid gap-3 ${order}`}>
+          <h1 className="col-11 mx-auto">Trip Calculator</h1>
           <h3>Distance</h3>
           <input
+            className="neu-input"
             type="number"
             placeholder="0"
             value={distance}
@@ -53,24 +66,27 @@ function GigForm(props) {
 
           <h3>Compensation</h3>
           <input
+            className="neu-input"
             type="number"
             placeholder="0"
             value={compensation}
             onChange={(e) => compInput(e.target.value)}
           />
+          <button className="neu-button" onClick={calculateAll}>Go</button>
         </div>
-        <div className="col-sm-12 col-lg-5 mx-auto neu d-grid gap-3">
-          <button onClick={calculateFuel}>Fuel Used</button>
-          <h2>{fuel.toFixed(2)} gallon(s)</h2>
+        <div className="col-12 mx-auto mt-3 neu">
+          <h6>Fuel Used</h6>
+          <p className="neu-input">{fuel.toFixed(2)} gallon(s)</p>
 
-          <button onClick={calculateHourly}>Hourly</button>
-          <h2>${hourly.toFixed(2)}/per hour</h2>
+          <h6>Hourly</h6>
+          <p className="neu-input">${hourly.toFixed(2)}/per hour</p>
 
-          <button onClick={calculateTime}>Estimated Time</button>
-          <h2>{deliveryTime} minutes</h2>
+          <h6>Estimated Time</h6>
+          <p className="neu-input">{deliveryTime.toFixed(0)} minutes</p>
 
-          <button onClick={calculateTotal}>Total</button>
-          <h2>${total.toFixed(2)}</h2>
+          <h6>Total</h6>
+          <p className="neu-input">${total.toFixed(2)}</p>
+          <button className="neu-button col-12" onClick={resetOrder}>Next Trip!</button>
         </div>
       </div>
 

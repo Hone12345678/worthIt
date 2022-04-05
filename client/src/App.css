@@ -92,6 +92,10 @@ header nav ul li a {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+.unit {
+  padding-left: -20px;
+}
+
 input::placeholder {
   color: gray;
 }
@@ -119,17 +123,13 @@ input::placeholder {
   height: 10%;
 }
 
-.neu-footer-btn {
-  margin: auto;
-  box-sizing: border-box;
-  box-shadow: 7px 7px 10px var(--bottom-shadow),
-    -7px -7px 10px var(--top-shadow);
-}
-
-.neu-footer-btn:hover {
-  /* box-shadow: none; */
-  box-shadow: inset 6px 6px var(--button-input-blur) var(--bottom-shadow),
-    inset -6px -6px var(--button-input-blur) var(--top-shadow);
+.footer {
+  bottom: 0;
+  margin: 0 auto !important;
+  text-align: center !important;
+  width: 100% !important;
+  height: 40px;
+  position: absolute;
 }
 
 .neu-button {
@@ -149,26 +149,3 @@ input::placeholder {
   box-shadow: inset 2px 2px var(--button-input-blur) darkblue,
     inset -2px -2px var(--button-input-blur) lightblue;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-body {
-  height: 100%;
-}
-
-
-@media screen {
-  
-}
-

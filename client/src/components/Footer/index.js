@@ -6,7 +6,7 @@ function Footer() {
   
 
   return (
-    <footer className='neu-footer'>
+    <footer className='neu-footer text-center align-items-center p-1'>
       <a href="mailto:worth_it_app@outlook.com">Contact Us Here!</a>
     </footer>
   );

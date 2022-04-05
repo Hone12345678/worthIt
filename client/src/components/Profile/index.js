@@ -96,15 +96,16 @@ function Profile(props) {
     });
   }
   return (
-    <Form className="col-6 mx-auto neu d-grid gap-3" id="login-form">
-      <h2>Profile</h2>
-      <section>
-        <p>Username: {items.username}</p>
-        <p>Email: {items.email}</p>
-        <Form.Group className="">
+    <Form className="col-11 mt-3 neu mx-auto d-flex flex-wrap text-center" id="login-form">
+      <h2 className="col-12 text-center">{items.username}'s Profile</h2>
+      <section className="row flex-wrap w-100 mx-auto">
+        {/* <h5 className="col-6">Username: {items.username}</h5>  */}
+        <h5 className="col-12 text-center">Email: {items.email}</h5>
+        <Form.Group className="col-6">
           <Form.Label bsPrefix="neu-label" htmlFor="pay">
             Desired Pay Rate (per Hour):{" "}
           </Form.Label>
+          <div className="d-inline">
           <Form.Control
             bsPrefix="neu-input"
             id="pay"
@@ -113,8 +114,9 @@ function Profile(props) {
             defaultValue={items.pay}
             onChange={updatePay}
           />
+          </div>
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="col-6">
           <Form.Label bsPrefix="neu-label" htmlFor="gasPrice">
             Gas Price:{" "}
           </Form.Label>
@@ -127,7 +129,7 @@ function Profile(props) {
             onChange={updateGasPrice}
           />
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="col-6">
           <Form.Label bsPrefix="neu-label" htmlFor="mpg">
             Miles per Gallon:{" "}
           </Form.Label>
@@ -140,7 +142,7 @@ function Profile(props) {
             onChange={updateMpg}
           />
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="col-6">
           <Form.Label bsPrefix="neu-label" htmlFor="avgSpeed">
             Average Speed (in MPH):{" "}
           </Form.Label>
@@ -153,7 +155,7 @@ function Profile(props) {
             onChange={updateSpeed}
           />
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="col-sm-12 col-md-6 mx-auto mb-4">
           <Form.Label bsPrefix="neu-label" htmlFor="avgPickup">
             Aproximate Time Spent Picking Up Items (in Minutes):{" "}
           </Form.Label>
@@ -166,7 +168,7 @@ function Profile(props) {
             onChange={updatePickup}
           />
         </Form.Group>
-        <Button className="neu-button" onClick={buttonHandler}>
+        <Button bsPrefix="neu-button" onClick={buttonHandler}>
           Get It!
         </Button>
       </section>
