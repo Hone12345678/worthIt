@@ -3,41 +3,6 @@
 const { Schema, model } = require('mongoose')
 const bcrypt = require('bcrypt')
 
-// gig
-const gigsSchema = new Schema({
-  name: {
-    type: String,
-    allowNull: false,
-    required: true,
-    trim: true,
-    unique: true
-  }
-}
-)
-
-// car
-const carSchema = new Schema({
-
-  car: {
-    type: String,
-    allowNull: false,
-    required: true,
-    trim: true
-  },
-  mpg: {
-    type: Number,
-    allowNull: false,
-    required: true,
-    trim: true
-  }
-},
-{
-  toJSON: {
-    getters: true
-  }
-}
-)
-
 // user
 const userSchema = new Schema ({
   username: {
@@ -64,8 +29,7 @@ const userSchema = new Schema ({
   },
   pay: {
     type: Number,
-    allowNull: false,
-    trim: true,
+    trim: true
   },
   speed: {
     type: Number,
@@ -82,9 +46,7 @@ const userSchema = new Schema ({
   mpg: {
     type: Number,
     trim: true
-  },
-  car: [carSchema],
-  gigs: [gigsSchema]
+  }
 })
 
 
