@@ -77,7 +77,7 @@ function App() {
         )}
       </div>
 
-      <Footer page={currentComponent} changePage={setCurrentComponent} className="h-10 order-last" />
+      <Footer page={currentComponent} changePage={setCurrentComponent} className="h-10 bottom" />
 
     </div>
   );
