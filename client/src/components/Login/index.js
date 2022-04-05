@@ -1,5 +1,7 @@
 // allows the user to login to an account they have already created
 
+import { useState } from "react";
+import { validateEmail } from "../../utils/helpers";
 import { Form, Button } from "react-bootstrap";
 import React from 'react';
 import AuthService from "../../utils/auth";
@@ -9,6 +11,40 @@ function Login(props) {
     setCurrentComponent,
     setLoginSelected
   } = props; 
+  
+  
+  const [formState, setFormState] = useState({ loginName: '', loginEmail: '', loginPassword: '' });
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleChange = (e) => {
+    console.log(e.target.name);
+    if (e.target.name === 'email') {
+      const isValid = validateEmail(e.target.value);
+      if (!isValid) {
+        setErrorMessage('Your email is invalid.');
+      } else {
+        setErrorMessage('');
+      }
+    }
+    else if (e.target.name === 'password') {
+      console.log(e.target.value.length);
+      if (e.target.value.length < 8) {
+        setErrorMessage('Your password must be at least 8 characters in length.');
+      } else {
+        setErrorMessage('');
+      }
+    }
+    else if (!e.target.value.length){
+        setErrorMessage(`${e.target.name} is required.`);
+      } else {
+        setErrorMessage('');
+      }
+
+    if (!errorMessage) {
+      setFormState({ ...formState, [e.target.name]: e.target.value });
+      console.log('Handle Form', formState);
+    }
+  };
 
   const loginSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +52,6 @@ function Login(props) {
     const email = document.querySelector('#email').value.trim();
     const password = document.querySelector('#password').value.trim();
 
-    
     if (username && email && password) {
       fetch('/api/users/login', {
         method: 'POST', 
@@ -27,7 +62,14 @@ function Login(props) {
         }),
         headers: { 'Content-Type': 'application/json' }
       })
-      .then((res)=> {return res.json()})
+      .then((res)=> {
+        if (res.ok) {return res.json()}
+        else {
+          alert("There was an issue with your login credentials. Please verify them and try again!")
+          throw console.error(res);
+        }
+        
+      })
       .then((res)=> {
 
         AuthService.login(res.token)
@@ -46,16 +88,21 @@ function Login(props) {
         <h2>Login</h2>
         <Form.Group className="">
           <Form.Label bsPrefix="neu-label" htmlFor="username">Username:</Form.Label>
-          <Form.Control bsPrefix="neu-input" id = "username" type="text" name="username" defaultValue={''} />
+          <Form.Control bsPrefix="neu-input" id = "username" type="text" name="username" defaultValue={''} onBlur={handleChange}/>
         </Form.Group>
         <Form.Group>
           <Form.Label bsPrefix="neu-label" htmlFor="email">Email address:</Form.Label>
-          <Form.Control bsPrefix="neu-input" id = "email" type="email" name="email" defaultValue={''} />
+          <Form.Control bsPrefix="neu-input" id = "email" type="email" name="email" defaultValue={''} onBlur={handleChange}/>
         </Form.Group>
         <Form.Group>
           <Form.Label bsPrefix="neu-label" htmlFor="password">Password:</Form.Label>
-          <Form.Control bsPrefix="neu-input" id = "password" type="password" defaultValue={''} />
+          <Form.Control bsPrefix="neu-input" id = "password" type="password" name="password" defaultValue={''} onBlur={handleChange}/>
         </Form.Group>
+        {errorMessage && (
+          <div>
+            <p className="error-text">{errorMessage}</p>
+          </div>
+        )}
         <Button bsPrefix="neu-button" variant="primary" className="neu-button" type="submit">Submit</Button>
         <div>
           <a href="#about" onClick={() => setCurrentComponent("about")} >How to use this App</a>

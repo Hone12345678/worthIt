@@ -128,34 +128,6 @@ const userController = {
 		}
 	},
 
-	// add new "Gig" asocaited with the user
-	addGig: async function ({params, body}, res) {
-		try {
-			const userData = await User.findOneAndUpdate(
-				{_id: params.userId},
-				{$addToSet: {gigs: body} },
-				{new: true, runValidators: true}
-			)
-			res.json(userData)
-		} catch (error) {
-			res.status(500).json(error)
-		}
-	},
-
-	// remove "Gig" asocaited with the user
-	removeGig: async function ({params}, res) {
-		try {
-			const userData = await User.findOneAndUpdate(
-				{_id: params.userId},
-				{$pull: { gigs: { _id: params.gigId} } },
-				{new: true}
-			)
-			res.json(userData)
-		} catch (error) {
-			res.status(500).json(error)
-		}
-	},
-
 	// remove car asocaited with the user
 	removeCar: async function ({params}, res) {
 		try {
@@ -168,7 +140,7 @@ const userController = {
 		} catch (error) {
 			res.status(500).json(error)
 		}
-	},
+	}
 
 
 	
