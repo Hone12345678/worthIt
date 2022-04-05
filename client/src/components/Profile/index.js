@@ -12,13 +12,19 @@ function Profile(props) {
   const userId = AuthService.getProfile().id;
   const buttonHandler = (e) => {
     e.preventDefault();
-    // const gasPrice = document.querySelector('#gasPrice').value.trim();
     const pay = document.querySelector("#pay").value.trim();
+    const gasPrice = document.querySelector("#gasPrice").value.trim();
+    const mpg = document.querySelector("#mpg").value.trim();
+    const avgSpeed = document.querySelector("#avgSpeed").value.trim();
+    const avgPickup = document.querySelector("#avgPickup").value.trim();
     fetch(`/api/users/${userId}`, {
       method: "PUT",
       body: JSON.stringify({
-        gasPrice: globalState.gasPrice,
-        pay,
+        gasPrice: gasPrice,
+        pay: pay,
+        speed: avgSpeed,
+        mpg: mpg,
+        pickUpTime: avgPickup,
       }),
       headers: { "Content-Type": "application/json" },
     })
@@ -30,6 +36,7 @@ function Profile(props) {
       .catch((err) => {
         alert(err.message);
       });
+    updateGlobalState();
     setCurrentComponent("gig");
   };
   useEffect(() => {
@@ -46,11 +53,28 @@ function Profile(props) {
           setError(error);
         }
       );
-  }, []);
+  }, [userId]);
+
+  function updateGlobalState(e) {
+    setGlobalState({
+      gasPrice: items.gasPrice,
+      pay: items.pay,
+      mpg: items.mpg,
+      avgSpeed: items.speed,
+      avgPickup: items.pickUpTime
+    })
+  }
+
   function updateGasPrice(e) {
     setGlobalState({
       ...globalState,
       gasPrice: e.target.value,
+    });
+  }
+  function updatePay(e) {
+    setGlobalState({
+      ...globalState,
+      pay: e.target.value,
     });
   }
   function updateMpg(e) {
@@ -79,14 +103,15 @@ function Profile(props) {
         <p>Email: {items.email}</p>
         <Form.Group className="">
           <Form.Label bsPrefix="neu-label" htmlFor="pay">
-            Desired Pay Rate:{" "}
+            Desired Pay Rate (per Hour):{" "}
           </Form.Label>
           <Form.Control
             bsPrefix="neu-input"
             id="pay"
-            type="text"
+            type="number"
             name="pay"
             defaultValue={items.pay}
+            onChange={updatePay}
           />
         </Form.Group>
         <Form.Group>
@@ -96,9 +121,9 @@ function Profile(props) {
           <Form.Control
             bsPrefix="neu-input"
             id="gasPrice"
-            type="gasPrice"
+            type="number"
             name="gasPrice"
-            value={globalState.gasPrice}
+            defaultValue={items.gasPrice}
             onChange={updateGasPrice}
           />
         </Form.Group>
@@ -109,35 +134,35 @@ function Profile(props) {
           <Form.Control
             bsPrefix="neu-input"
             id="mpg"
-            type="mpg"
+            type="number"
             name="mpg"
-            value={globalState.mpg}
+            defaultValue={items.mpg}
             onChange={updateMpg}
           />
         </Form.Group>
         <Form.Group>
           <Form.Label bsPrefix="neu-label" htmlFor="avgSpeed">
-            Average Speed:{" "}
+            Average Speed (in MPH):{" "}
           </Form.Label>
           <Form.Control
             bsPrefix="neu-input"
             id="avgSpeed"
-            type="avgSpeed"
+            type="number"
             name="avgSpeed"
-            value={globalState.avgSpeed}
+            defaultValue={items.speed}
             onChange={updateSpeed}
           />
         </Form.Group>
         <Form.Group>
           <Form.Label bsPrefix="neu-label" htmlFor="avgPickup">
-            Average Store Pickup:{" "}
+            Aproximate Time Spent Picking Up Items (in Minutes):{" "}
           </Form.Label>
           <Form.Control
             bsPrefix="neu-input"
             id="avgPickup"
-            type="avgPickup"
+            type="number"
             name="avgPickup"
-            value={globalState.avgPickup}
+            defaultValue={items.pickUpTime}
             onChange={updatePickup}
           />
         </Form.Group>
