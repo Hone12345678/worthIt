@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 // time, compensation, fuel, hourly, total
 function GigForm(props) {
+
   const { globalState } = props;
   const [distance, distInput] = useState(0);
   const [time] = useState(0);
@@ -14,7 +15,8 @@ function GigForm(props) {
   const [order, setOrder] = useState("");
   const [worthIt, setWorthIt] = useState({
     wageClass: null,
-    wageText: null
+    wageText: null,
+    showClass: null
   });
 
 
@@ -38,45 +40,42 @@ function GigForm(props) {
     totalOutput(compensation - (distance / globalState.mpg) * globalState.gasPrice);
   }
 
-  // function hourlyWage() {
-  //   console.log(hourly, globalState.pay)
-  //   if (hourly > globalState.pay) {
-  //   setWorthIt({
-  //     wageClass: 'bg-success',
-  //     wageText: "Worth it!"
-  // })
-  //   } else setWorthIt({
-  //     wageClass: 'bg-danger',
-  //     wageText: "Not worth it!"
-  // })  
-  // }
-
   useEffect(() => {
-    if (hourly > globalState.pay) {
-        setWorthIt({
-          wageClass: 'bg-success',
-          wageText: "Worth it!"
-      })
-        } else setWorthIt({
-          wageClass: 'bg-danger',
-          wageText: "Not worth it!"
-      })  
-  }, [hourly, globalState.pay])
+    if (!worthIt.showClass) {
+      return
+    } else {
+      if (hourly > globalState.pay) {
+          setWorthIt({
+            ...worthIt,
+            wageClass: 'bg-success',
+            wageText: "Worth it!",
+        })
+          } else setWorthIt({
+            ...worthIt,
+            wageClass: 'bg-danger',
+            wageText: "Not worth it!"
+        })  
+    }
+  }, [hourly, globalState.pay, worthIt])
 
   async function calculateAll() {
+    setWorthIt({
+      ...worthIt,
+      showClass: true
+    })
     await calculateFuel();
     await calculateHourly();
     await calculateTime();
     await calculateTotal();
     await setOrder("order-last");
-    // await hourlyWage();
   }
 
   function resetOrder() {
     setOrder("");
     setWorthIt({
       wageClass: null,
-      wageText: null
+      wageText: null,
+      showDiv: null
     });
   }
 

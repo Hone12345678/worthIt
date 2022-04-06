@@ -31,13 +31,15 @@ function Profile(props) {
       .then((res) => {
         return res.json();
       })
-      // .then((res)=> {
-      // })
+      .then((res)=> {
+        updateGlobalState(res);
+        setTimeout(() => {
+          setCurrentComponent("gig");
+        })
+      })
       .catch((err) => {
         alert(err.message);
       });
-    updateGlobalState();
-    setCurrentComponent("gig");
   };
   useEffect(() => {
     // const userId = need to create a function that will return the userId
@@ -55,13 +57,13 @@ function Profile(props) {
       );
   }, [userId]);
 
-  function updateGlobalState(e) {
+  function updateGlobalState(data) {
     setGlobalState({
-      gasPrice: items.gasPrice,
-      pay: items.pay,
-      mpg: items.mpg,
-      avgSpeed: items.speed,
-      avgPickup: items.pickUpTime
+      gasPrice: data.gasPrice,
+      pay: data.pay,
+      mpg: data.mpg,
+      avgSpeed: data.speed,
+      avgPickup: data.pickUpTime
     })
   }
 
