@@ -104,7 +104,7 @@ function Login(props) {
         </Form.Group>
         {errorMessage && (
           <div>
-            <p className="error-text">{errorMessage}</p>
+            <p className="error-text text-red-500">{errorMessage}</p>
           </div>
         )}
         <Button bsPrefix="neu-button" variant="primary" className="neu-button" type="submit">Submit</Button>
