@@ -56,7 +56,7 @@ function GigForm(props) {
             wageText: "Not worth it!"
         })  
     }
-  }, [hourly, globalState.pay, worthIt])
+  }, [hourly, globalState.pay, worthIt.showClass])
 
   async function calculateAll() {
     setWorthIt({
@@ -82,6 +82,8 @@ function GigForm(props) {
   return (
     <div className="col-11 mx-auto text-center">
       <div className="col-12 mx-auto d-flex flex-row flex-wrap">
+        {!worthIt.showClass
+        ?
         <div className={`col-12 mx-auto mt-3 neu d-grid gap-3 ${order}`}>
           <h1 className="col- mx-auto">Trip Calculator</h1>
           <div className="flex flex-wrap row">
@@ -107,6 +109,7 @@ function GigForm(props) {
           </div>
           <button className="neu-button" onClick={calculateAll}>Go</button>
         </div>
+        :
         <div className={`col-12 mx-auto mt-3 neu flex flex-wrap row ${worthIt.wageClass}`}>
           <h2>{worthIt.wageText}</h2>
           <div className="col-6">
@@ -130,8 +133,8 @@ function GigForm(props) {
           </div>
           <button className="neu-button col-12" onClick={resetOrder}>Next Trip!</button>
         </div>
+      }
       </div>
-
     </div>
   );
 }
