@@ -29,8 +29,9 @@ function App() {
   }, [loginSelected]);
 
   return (
-    <div className='bg-background flex flex-col justify-between h-screen'>
-      <Header className="text-light"
+    <div className="bg-background flex flex-col justify-between h-screen">
+      <Header
+        className="text-light"
         setCurrentComponent={setCurrentComponent}
         currentComponent={currentComponent}
         loginSelected={loginSelected}
@@ -38,46 +39,56 @@ function App() {
       ></Header>
 
       <div className="justify-content-center h-100 mt-20">
-        {!loginSelected ? (
-          <>
-            {currentComponent === "login" ? (
-              <Login
-                setCurrentComponent={setCurrentComponent}
-                currentComponent={currentComponent}
-                setLoginSelected={setLoginSelected}
-              ></Login>
-            ) : (
-              <Signup
-                setLoginSelected={setLoginSelected}
-                setCurrentComponent={setCurrentComponent}
-              ></Signup>
-            )}
-          </>
-        ) : (
-          <>
-            {currentComponent === "gig" && (
-              <Gig
-                setCurrentComponent={setCurrentComponent}
-                currentComponent={currentComponent}
-                globalState={globalState}
-                // uncomment if we want to be able to change global state on gig component
-                // setGlobalState={setGlobalState}
-              />
-            )}
-            {currentComponent === "about" && <About />}
-            {currentComponent === "profile" && (
-              <Profile
-                setCurrentComponent={setCurrentComponent}
-                globalState={globalState}
-                setGlobalState={setGlobalState}
-              />
-            )}
-          </>
+        {currentComponent === "login" && (
+          <Login
+            setCurrentComponent={setCurrentComponent}
+            currentComponent={currentComponent}
+            setLoginSelected={setLoginSelected}
+          ></Login>
+        )}
+        {currentComponent === "signup" && (
+          <Signup
+            setLoginSelected={setLoginSelected}
+            setCurrentComponent={setCurrentComponent}
+          ></Signup>
+        )}
+
+        {loginSelected && currentComponent === "gig" && (
+          <Gig
+            setCurrentComponent={setCurrentComponent}
+            currentComponent={currentComponent}
+            globalState={globalState}
+            // uncomment if we want to be able to change global state on gig component
+            // setGlobalState={setGlobalState}
+          />
+        )}
+        {!loginSelected && currentComponent === "gig" && (
+          <Login
+          setCurrentComponent={setCurrentComponent}
+          currentComponent={currentComponent}
+        ></Login>
+        )}
+        {currentComponent === "about" && <About />}
+        {loginSelected && currentComponent === "profile" && (
+          <Profile
+            setCurrentComponent={setCurrentComponent}
+            globalState={globalState}
+            setGlobalState={setGlobalState}
+          />
+        )}
+        {!loginSelected && currentComponent === "profile" && (
+          <Login
+          setCurrentComponent={setCurrentComponent}
+          currentComponent={currentComponent}
+        ></Login>
         )}
       </div>
 
-      <Footer page={currentComponent} changePage={setCurrentComponent} className="h-10" />
-
+      <Footer
+        page={currentComponent}
+        changePage={setCurrentComponent}
+        className="h-10"
+      />
     </div>
   );
 }

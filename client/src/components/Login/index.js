@@ -63,19 +63,23 @@ function Login(props) {
         headers: { 'Content-Type': 'application/json' }
       })
       .then((res)=> {
-        if (res.ok) {return res.json()}
-        else {
-          alert("There was an issue with your login credentials. Please verify them and try again!")
-          throw console.error(res);
+        if (res.ok) {
+          return res.json()
         }
         
+
       })
       .then((res)=> {
-
-        AuthService.login(res.token)
-        setLoginSelected(true)
-        setCurrentComponent("profile")
-  
+        if (res?.token) {
+          setErrorMessage("");
+          AuthService.login(res.token)
+          setLoginSelected(true)
+          setCurrentComponent("profile")
+        }
+        else {
+          setErrorMessage("There was an issue with your login credentials. Please verify them and try again!")
+          // throw console.error(res);
+        }
       })
       .catch(err => {
         alert(err.message)
