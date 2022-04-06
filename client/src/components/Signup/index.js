@@ -11,15 +11,44 @@ function Signup(props) {
     setLoginSelected
   } = props; 
 
+  const [formState, setFormState] = useState({ loginName: '', loginEmail: '', loginPassword: '' });
   const [errorMessage, setErrorMessage] = useState('');
+
+  const handleChange = (e) => {
+    console.log(e.target.name);
+    if (e.target.name === 'email') {
+      const isValid = validateEmail(e.target.value);
+      if (!isValid) {
+        setErrorMessage('Your email is invalid.');
+      } else {
+        setErrorMessage('');
+      }
+    }
+    else if (e.target.name === 'password') {
+      console.log(e.target.value.length);
+      if (e.target.value.length < 8) {
+        setErrorMessage('Your password must be at least 8 characters in length.');
+      } else {
+        setErrorMessage('');
+      }
+    }
+    else if (!e.target.value.length){
+        setErrorMessage(`${e.target.name} is required.`);
+      } else {
+        setErrorMessage('');
+      }
+
+    if (!errorMessage) {
+      setFormState({ ...formState, [e.target.name]: e.target.value });
+      console.log('Handle Form', formState);
+    }
+  };
 
   const signupSubmit = (e) => {
     e.preventDefault();
     const username = document.querySelector('#username').value.trim();
     const email = document.querySelector('#email').value.trim();
     const password = document.querySelector('#password').value.trim();
-
-
 
     if (username && email && password) {
       fetch('/api/users/', {
