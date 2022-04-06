@@ -66,8 +66,6 @@ function Login(props) {
         if (res.ok) {
           return res.json()
         }
-        
-
       })
       .then((res)=> {
         if (res?.token) {

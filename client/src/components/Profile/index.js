@@ -117,6 +117,19 @@ function Profile(props) {
           </div>
         </Form.Group>
         <Form.Group className="col-6">
+          <Form.Label bsPrefix="neu-label" htmlFor="avgSpeed">
+            Average Speed (in MPH):{" "}
+          </Form.Label>
+          <Form.Control
+            bsPrefix="neu-input"
+            id="avgSpeed"
+            type="number"
+            name="avgSpeed"
+            defaultValue={items.speed}
+            onChange={updateSpeed}
+          />
+        </Form.Group>
+        <Form.Group className="col-6">
           <Form.Label bsPrefix="neu-label" htmlFor="gasPrice">
             Gas Price:{" "}
           </Form.Label>
@@ -131,7 +144,7 @@ function Profile(props) {
         </Form.Group>
         <Form.Group className="col-6">
           <Form.Label bsPrefix="neu-label" htmlFor="mpg">
-            Miles per Gallon:{" "}
+            Miles/Gallon:{" "}
           </Form.Label>
           <Form.Control
             bsPrefix="neu-input"
@@ -140,19 +153,6 @@ function Profile(props) {
             name="mpg"
             defaultValue={items.mpg}
             onChange={updateMpg}
-          />
-        </Form.Group>
-        <Form.Group className="col-6">
-          <Form.Label bsPrefix="neu-label" htmlFor="avgSpeed">
-            Average Speed (in MPH):{" "}
-          </Form.Label>
-          <Form.Control
-            bsPrefix="neu-input"
-            id="avgSpeed"
-            type="number"
-            name="avgSpeed"
-            defaultValue={items.speed}
-            onChange={updateSpeed}
           />
         </Form.Group>
         <Form.Group className="col-sm-12 col-md-6 mx-auto mb-4">
