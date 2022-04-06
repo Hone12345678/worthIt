@@ -1,6 +1,6 @@
 //Gig Componant
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // time, compensation, fuel, hourly, total
 function GigForm(props) {
   const { globalState } = props;
@@ -38,19 +38,30 @@ function GigForm(props) {
     totalOutput(compensation - (distance / globalState.mpg) * globalState.gasPrice);
   }
 
-  function hourlyWage() {
-    console.log(hourly, globalState.pay)
+  // function hourlyWage() {
+  //   console.log(hourly, globalState.pay)
+  //   if (hourly > globalState.pay) {
+  //   setWorthIt({
+  //     wageClass: 'bg-success',
+  //     wageText: "Worth it!"
+  // })
+  //   } else setWorthIt({
+  //     wageClass: 'bg-danger',
+  //     wageText: "Not worth it!"
+  // })  
+  // }
+
+  useEffect(() => {
     if (hourly > globalState.pay) {
-    setWorthIt({
-      wageClass: 'bg-success',
-      wageText: "Worth it!"
-  })
-    } else setWorthIt({
-      wageClass: 'bg-danger',
-      wageText: "Not worth it!"
-  })
-    
-  }
+        setWorthIt({
+          wageClass: 'bg-success',
+          wageText: "Worth it!"
+      })
+        } else setWorthIt({
+          wageClass: 'bg-danger',
+          wageText: "Not worth it!"
+      })  
+  }, [hourly, globalState.pay])
 
   function calculateAll() {
     calculateFuel();
@@ -58,7 +69,7 @@ function GigForm(props) {
     calculateTime();
     calculateTotal();
     setOrder("order-last");
-    hourlyWage();
+    // hourlyWage();
   }
 
   function resetOrder() {
