@@ -10,7 +10,6 @@ function Profile(props) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const userId = AuthService.getProfile().id;
-  
   const buttonHandler = (e) => {
     e.preventDefault();
     const pay = document.querySelector("#pay").value.trim();
@@ -18,17 +17,6 @@ function Profile(props) {
     const mpg = document.querySelector("#mpg").value.trim();
     const avgSpeed = document.querySelector("#avgSpeed").value.trim();
     const avgPickup = document.querySelector("#avgPickup").value.trim();
-
-    function updateGlobalState(e) {
-      setGlobalState({
-        gasPrice: gasPrice,
-        pay: pay,
-        mpg: mpg,
-        avgSpeed: avgSpeed,
-        avgPickup: avgPickup
-      })
-    }
-
     fetch(`/api/users/${userId}`, {
       method: "PUT",
       body: JSON.stringify({
@@ -66,6 +54,16 @@ function Profile(props) {
         }
       );
   }, [userId]);
+
+  function updateGlobalState(e) {
+    setGlobalState({
+      gasPrice: items.gasPrice,
+      pay: items.pay,
+      mpg: items.mpg,
+      avgSpeed: items.speed,
+      avgPickup: items.pickUpTime
+    })
+  }
 
   function updateGasPrice(e) {
     setGlobalState({
@@ -159,7 +157,7 @@ function Profile(props) {
         </Form.Group>
         <Form.Group className="col-sm-12 col-md-6 mx-auto mb-4">
           <Form.Label bsPrefix="neu-label" htmlFor="avgPickup">
-            Aproximate Time Spent Picking Up Items (in Minutes):{" "}
+            Approximate Time Spent Picking Up Items (in Minutes):{" "}
           </Form.Label>
           <Form.Control
             bsPrefix="neu-input"
@@ -171,7 +169,7 @@ function Profile(props) {
           />
         </Form.Group>
         <Button bsPrefix="neu-button" onClick={buttonHandler}>
-          Get It!
+          Submit
         </Button>
       </section>
     </Form>
