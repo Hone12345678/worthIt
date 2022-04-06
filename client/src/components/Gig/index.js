@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 // time, compensation, fuel, hourly, total
 function GigForm(props) {
+
   const { globalState } = props;
   const [distance, distInput] = useState(0);
   const [time] = useState(0);
@@ -14,7 +15,8 @@ function GigForm(props) {
   const [order, setOrder] = useState("");
   const [worthIt, setWorthIt] = useState({
     wageClass: null,
-    wageText: null
+    wageText: null,
+    showClass: null
   });
 
 
@@ -39,18 +41,28 @@ function GigForm(props) {
   }
 
   useEffect(() => {
-    if (hourly > globalState.pay) {
-        setWorthIt({
-          wageClass: 'bg-success',
-          wageText: "Worth it!"
-      })
-        } else setWorthIt({
-          wageClass: 'bg-danger',
-          wageText: "Not worth it!"
-      })  
-  }, [hourly, globalState.pay])
+    if (!worthIt.showClass) {
+      return
+    } else {
+      if (hourly > globalState.pay) {
+          setWorthIt({
+            ...worthIt,
+            wageClass: 'bg-success',
+            wageText: "Worth it!",
+        })
+          } else setWorthIt({
+            ...worthIt,
+            wageClass: 'bg-danger',
+            wageText: "Not worth it!"
+        })  
+    }
+  }, [hourly, globalState.pay, worthIt])
 
   async function calculateAll() {
+    setWorthIt({
+      ...worthIt,
+      showClass: true
+    })
     await calculateFuel();
     await calculateHourly();
     await calculateTime();
@@ -62,7 +74,8 @@ function GigForm(props) {
     setOrder("");
     setWorthIt({
       wageClass: null,
-      wageText: null
+      wageText: null,
+      showDiv: null
     });
   }
 
