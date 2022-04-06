@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const { getUsers, createUser, getUser, editUser, addCar, removeCar, loginUser, removeUser } = require("../../controller/userController")
+const { getUsers, createUser, getUser, editUser, loginUser, removeUser } = require("../../controller/userController")
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const config = require("../../config/database");
@@ -36,11 +36,5 @@ router.route("/:userId")
 	.get(getUser)
 	.put(editUser)
 	.delete(removeUser)
-
-router.route("/:userId/car")
-	.put(addCar)
-
-router.route("/:userId/car/:carId")
-	.put(removeCar)	
 
 module.exports = router

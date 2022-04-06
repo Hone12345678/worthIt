@@ -69,5 +69,5 @@ function Header(props) {
     </header>
   );
 }
-// {loginSelected && <button onClick={AuthService.logout()}>logout</button>}
+
 export default Header;

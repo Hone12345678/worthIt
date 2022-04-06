@@ -18,7 +18,6 @@ function App() {
     avgPickup: 0,
   });
 
-  //
   const [loginSelected, setLoginSelected] = useState(false);
 
   useEffect(() => {
@@ -58,8 +57,6 @@ function App() {
             setCurrentComponent={setCurrentComponent}
             currentComponent={currentComponent}
             globalState={globalState}
-            // uncomment if we want to be able to change global state on gig component
-            // setGlobalState={setGlobalState}
           />
         )}
         {!loginSelected && currentComponent === "gig" && (
