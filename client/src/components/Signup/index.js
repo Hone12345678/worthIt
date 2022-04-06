@@ -62,22 +62,26 @@ function Signup(props) {
         }),
         headers: { 'Content-Type': 'application/json' }
       })
-      .then((res)=> { 
-        if(res.ok) {
+      .then((res)=> {
+        if (res.ok) {
           return res.json()
-        } else {
-          alert("There was an issue with your account credentials. Please ensure your email address is valid and your password is at least 8 characters long")
-          throw console.error(res);
         }
       })
       .then((res)=> {
-        console.log(res)
-        AuthService.login(res.token)
-        setLoginSelected(true);
-        setCurrentComponent("about")
-      }).catch(err => {
+        if (res?.token) {
+          setErrorMessage("");
+          AuthService.login(res.token)
+          setLoginSelected(true)
+          setCurrentComponent("profile")
+        }
+        else {
+          setErrorMessage("There was an issue with your account credentials. Please verify them and try again!")
+          // throw console.error(res);
+        }
+      })
+      .catch(err => {
         alert(err.message)
-    })
+      })
   }
 }
   
