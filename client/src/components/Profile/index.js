@@ -146,7 +146,7 @@ function Profile(props) {
         </Form.Group>
         <Form.Group className="col-6">
           <Form.Label bsPrefix="neu-label" htmlFor="mpg">
-            Miles per Gallon:{" "}
+            Miles/Gallon:{" "}
           </Form.Label>
           <Form.Control
             bsPrefix="neu-input"

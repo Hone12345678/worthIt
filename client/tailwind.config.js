@@ -15,12 +15,14 @@ module.exports = {
         '45': '45%',
         '50rem': '50rem',
         '32rem': '32rem',
+        '40rem': '40rem',
         '72rem': '72rem',
       },
       height: {
         '45': '45%',
         '50rem': '50rem',
         '32rem': '32rem',
+        '40rem': '40rem',
         '72rem': '72rem',
       },
       spacing: {
