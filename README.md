@@ -56,7 +56,7 @@
 
 - Alows user to signup and create a profile that stores user specific data.
 - Calculates the over all value of a "Gig" and if it is worth while, based on user criteria.
-- The user is able to update personal information inputs like  vehicle mpg, gig, desired hourly income and time.
+- The user is able to update personal information inputs like vehicle mpg, gig, desired hourly income and time.
 - The user is able to use the trip calcultor feature to determine if a "gig" is worth their time based on there desired income range and how much it would cost to   complete the service being requested.
 - Once inputs have be entered the user is simply told if the "gig" is worth it or not.
 
@@ -64,23 +64,30 @@
 ## Image of Website
 
 - Signup
+
 ![signup](https://user-images.githubusercontent.com/46331608/161891642-e7332144-b51b-4e0c-85e7-7a0846c10250.jpg)
 
 - Login
+
 ![login](https://user-images.githubusercontent.com/46331608/161891659-dda3fdf3-3045-42f1-ba6a-6968153a623f.jpg)
 
 - About
+
 ![image](https://user-images.githubusercontent.com/46331608/161893661-055d0ca5-ca4c-46d7-9994-758f31eb8143.png)
 
 - Profile
+
 ![profile](https://user-images.githubusercontent.com/46331608/161891692-94a3e31d-db08-4e9c-be98-9e6b931597b4.jpg)
 
-- Gig inputs
+- Gig input
+
 ![login](https://user-images.githubusercontent.com/46331608/161891870-a52ff5d1-9d25-4357-91cc-fed835b887ef.jpg)
 
 - Worth it!
+
 ![image](https://user-images.githubusercontent.com/46331608/161893003-2f5e1c6d-9d90-4fa0-9cc7-2394bb2accdf.png)
 
 - Not worth it
+
 ![image](https://user-images.githubusercontent.com/46331608/161893033-da07364e-fab1-45a4-bafa-1c02a2c10dcc.png)
 
