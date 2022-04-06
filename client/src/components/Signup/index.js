@@ -90,16 +90,21 @@ function Signup(props) {
 
       <Form.Group>
         <Form.Label htmlFor="username">Username: </Form.Label>
-        <Form.Control bsPrefix="neu-input"  id = "username" type="text" name="username" defaultValue={''} />
+        <Form.Control bsPrefix="neu-input"  id = "username" type="text" name="username" defaultValue={''} onBlur={handleChange} />
       </Form.Group>
       <Form.Group>
         <Form.Label htmlFor="email">Email address: </Form.Label>
-        <Form.Control bsPrefix="neu-input" id = "email" type="email" name="email" defaultValue={''} />
+        <Form.Control bsPrefix="neu-input" id = "email" type="email" name="email" defaultValue={''} onBlur={handleChange} />
       </Form.Group>
       <Form.Group>
         <Form.Label htmlFor="password">Password: </Form.Label>
-        <Form.Control bsPrefix="neu-input" id = "password" type="password" defaultValue={''} />
+        <Form.Control bsPrefix="neu-input" id = "password" type="password" defaultValue={''} onBlur={handleChange} />
       </Form.Group>
+      {errorMessage && (
+          <div>
+            <p className="error-text text-red-500">{errorMessage}</p>
+          </div>
+        )}
       <Button bsPrefix="neu-button" variant="primary" className="neu-button" type="submit">Submit</Button>
       <span>Already have an account? <u><a href="#login" onClick={() => setCurrentComponent("login")}>Login</a></u></span>
     </Form>
