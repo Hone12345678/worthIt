@@ -68,13 +68,13 @@ const About = () => {
         {isModalOpen && (
           <Modal onClose={toggleModal} currentScreenshot={currentScreenshot} />
         )}
-        <div className="flex flex-row flex-wrap justify-center mt-4 text-center">
+        <div className="flex flex-row flex-wrap justify-around mt-4 text-center">
           {screenshots.map((screenshot, i) => (
             <p className='font-bold underline'>{screenshot.shortDescription}
             <img
               src={screenshot.image}
               alt={screenshot.name}
-              className="h-64 md:px-2 w-auto mb-6 mr-6 hover:opacity-70 md:hover:h-72 flex flex-shrink object-contain"
+              className="h-64 md:px-2 w-auto hover:opacity-70 md:hover:h-72 flex flex-shrink object-contain"
               onClick={() => toggleModal(screenshot, i)}
               key={screenshot.name}
               />
