@@ -9,13 +9,6 @@ import signupImage from '../../assets/images/signup.jpg';
 const About = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentScreenshot, setCurrentScreenshot] = useState();
-  
-    const [category] = useState(    
-      {
-      name: 'About',
-      description: 'This is a pretty cool app. here are some screenshots and how to use it',
-      },
-    );
 
     const [screenshots] = useState([
       {
@@ -33,8 +26,8 @@ const About = () => {
   
     return (
       <section className="mt-10 md:ml-24 text-black neu w-5/6">
-            <h1 data-testid="h1tag" className="">{category.name}</h1>
-            <p className="">{category.description}</p>
+            <h1 data-testid="h1tag" className="">About</h1>
+            <p className="">This is a pretty cool app. here are some screenshots and how to use it</p>
       
       <div>
         {isModalOpen && (
