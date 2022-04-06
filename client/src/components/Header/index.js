@@ -14,7 +14,7 @@ function Header(props) {
           <h1 className="m-0 text-center">
             <a
               data-testid="link"
-              href="/worthIt"
+              href="/"
             >
               Worth It
             </a>
