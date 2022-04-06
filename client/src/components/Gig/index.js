@@ -38,38 +38,38 @@ function GigForm(props) {
     totalOutput(compensation - (distance / globalState.mpg) * globalState.gasPrice);
   }
 
-  function hourlyWage() {
-    console.log(hourly, globalState.pay)
-    if (hourly > globalState.pay) {
-    setWorthIt({
-      wageClass: 'bg-success',
-      wageText: "Worth it!"
-  })
-    } else setWorthIt({
-      wageClass: 'bg-danger',
-      wageText: "Not worth it!"
-  })  
-  }
-
-  // useEffect(() => {
+  // function hourlyWage() {
+  //   console.log(hourly, globalState.pay)
   //   if (hourly > globalState.pay) {
-  //       setWorthIt({
-  //         wageClass: 'bg-success',
-  //         wageText: "Worth it!"
-  //     })
-  //       } else setWorthIt({
-  //         wageClass: 'bg-danger',
-  //         wageText: "Not worth it!"
-  //     })  
-  // }, [hourly, globalState.pay])
+  //   setWorthIt({
+  //     wageClass: 'bg-success',
+  //     wageText: "Worth it!"
+  // })
+  //   } else setWorthIt({
+  //     wageClass: 'bg-danger',
+  //     wageText: "Not worth it!"
+  // })  
+  // }
 
-  function calculateAll() {
-    calculateFuel();
-    calculateHourly();
-    calculateTime();
-    calculateTotal();
-    setOrder("order-last");
-    hourlyWage();
+  useEffect(() => {
+    if (hourly > globalState.pay) {
+        setWorthIt({
+          wageClass: 'bg-success',
+          wageText: "Worth it!"
+      })
+        } else setWorthIt({
+          wageClass: 'bg-danger',
+          wageText: "Not worth it!"
+      })  
+  }, [hourly, globalState.pay])
+
+  async function calculateAll() {
+    await calculateFuel();
+    await calculateHourly();
+    await calculateTime();
+    await calculateTotal();
+    await setOrder("order-last");
+    // await hourlyWage();
   }
 
   function resetOrder() {
