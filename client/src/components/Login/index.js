@@ -17,7 +17,6 @@ function Login(props) {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
-    console.log(e.target.name);
     if (e.target.name === 'email') {
       const isValid = validateEmail(e.target.value);
       if (!isValid) {
@@ -27,7 +26,6 @@ function Login(props) {
       }
     }
     else if (e.target.name === 'password') {
-      console.log(e.target.value.length);
       if (e.target.value.length < 8) {
         setErrorMessage('Your password must be at least 8 characters in length.');
       } else {
@@ -42,7 +40,6 @@ function Login(props) {
 
     if (!errorMessage) {
       setFormState({ ...formState, [e.target.name]: e.target.value });
-      console.log('Handle Form', formState);
     }
   };
 
@@ -76,7 +73,6 @@ function Login(props) {
         }
         else {
           setErrorMessage("There was an issue with your login credentials. Please verify them and try again!")
-          // throw console.error(res);
         }
       })
       .catch(err => {
@@ -114,6 +110,5 @@ function Login(props) {
     </Form>
   );
 }
-
 
 export default Login

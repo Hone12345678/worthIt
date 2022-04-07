@@ -55,7 +55,7 @@ const About = () => {
     };
   
     return (
-      <section className="mt-10 md:ml-24 text-black neu">
+      <section className="mt-10 md:ml-24 text-black neu mx-auto col-11">
         <div className='text-center'>
             <h1 data-testid="h1tag" className="">Welcome to WorthIt</h1>
             <p>This app was created to quickly determine if a delivery gig is worth it or not.</p>
@@ -70,18 +70,26 @@ const About = () => {
         )}
         <div className="flex flex-row flex-wrap justify-around mt-4 text-center">
           {screenshots.map((screenshot, i) => (
-            <p className='font-bold underline'>{screenshot.shortDescription}
+            <p className='font-bold underline' key={screenshot.name} >{screenshot.shortDescription} 
             <img
               src={screenshot.image}
               alt={screenshot.name}
               className="h-64 md:px-2 w-auto hover:opacity-70 md:hover:h-72 flex flex-shrink object-contain"
               onClick={() => toggleModal(screenshot, i)}
-              key={screenshot.name}
+              
               />
               </p>
           ))}
         </div>
       </div>
+      <h5 className="mt-5 text-center ">
+            <a
+              data-testid="link"
+              href="/"
+            >
+              Back
+            </a>
+          </h5>
       </section>
     );
   };

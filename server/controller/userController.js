@@ -112,37 +112,7 @@ const userController = {
 		} catch (error) {
 			res.status(500).json(error)
 		}
-	},
-
-	// update the number of vehicles associated with the user
-	addCar: async function ({params, body}, res) {
-		try {
-			const userData = await User.findOneAndUpdate(
-				{_id: params.userId},
-				{ $addToSet: { car: body } },
-				{new: true}
-				)
-				res.json(userData)
-		} catch (error) {
-			res.status(500).json(error)
-		}
-	},
-
-	// remove car asocaited with the user
-	removeCar: async function ({params}, res) {
-		try {
-			const userData = await User.findOneAndUpdate(
-				{_id: params.userId},
-				{$pull: { car: {_id: params.carId} } },
-				{new: true}
-			)
-			res.json(userData)
-		} catch (error) {
-			res.status(500).json(error)
-		}
 	}
-
-
 	
 }
 

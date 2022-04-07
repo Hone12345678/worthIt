@@ -1,4 +1,4 @@
-// settong up connection with mongoose
+// setting up connection with mongoose
 
 const mongoose = require('mongoose');
 
