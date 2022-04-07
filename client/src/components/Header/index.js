@@ -13,7 +13,7 @@ function Header(props) {
         <div className="col-sm-12 col-md-3">
           <h1 className="m-0 text-center">
             <a
-              data-testid="link"
+              key="link"
               href="/"
             >
               Worth It
@@ -24,7 +24,7 @@ function Header(props) {
             {/* allows user to navigate to the about page by clicking "About" */}
           <li className="px-3">
             <a
-              data-testid="about"
+              key="about"
               href="#about"
               onClick={() => setCurrentComponent("about")}
               className="hover:font-bold"
@@ -32,38 +32,39 @@ function Header(props) {
               About
             </a>
           </li>
+          {loginSelected && <>
             {/* allows user to navigate to the profile page by clicking "Profile" */}
           <li className="px-3">
             <a
-              data-testid="profile"
+              key="profile"
               href="#profile"
               onClick={() => setCurrentComponent("profile")}
               className="hover:font-bold"
-            >
+              >
               Profile
             </a>
           </li>
           {/* allows user to navigate to the gig page by clicking "Gig" */}
           <li className="px-3">
             <a
-              data-testid="gig"
+              key="gig"
               href="#gig"
               onClick={() => setCurrentComponent("gig")}
               className="hover:font-bold"
-            >
+              >
               Gig
             </a>
-          </li>
-          {loginSelected && <li className="px-3">
+          </li> 
+          <li className="px-3">
             <a
-              data-testid="logout"
+              key="logout"
               onClick={() => AuthService.logout()}
               href="#login"
               className=""
             >
               logout
             </a>
-          </li>}
+          </li> </>}
         </ul>
       </nav>
     </header>

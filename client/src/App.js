@@ -65,7 +65,7 @@ function App() {
           currentComponent={currentComponent}
         ></Login>
         )}
-        {currentComponent === "about" && <About />}
+        {currentComponent === "about" && <About setCurrentComponent={setCurrentComponent} />}
         {loginSelected && currentComponent === "profile" && (
           <Profile
             setCurrentComponent={setCurrentComponent}
